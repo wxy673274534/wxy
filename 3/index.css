@@ -1,0 +1,472 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+a{
+	text-decoration: none;
+	color: #000;
+}
+li{
+	list-style: none;
+}
+/* 顶部通知֪ */
+#g-topNot{
+	height: 36px;
+	width: 1202px;
+	line-height: 36px;
+	background-color: #f3f3f3;
+	color: #333;
+	font-size: 12px;
+	padding: 0 207px; 
+}
+.m-see{
+	color: #21a557;
+}
+.m-noRemind{
+	float: right;
+	color: #333;
+}
+
+
+/* 关注 左 */
+#g-follow{
+	padding: 0 207px;
+	width: 1202px;
+	height: 89px;
+	line-height: 89px;
+	color: #333;
+	font-size: 22px;
+}
+#g-follow .m-followLeft{
+	float: left;
+}
+#g-follow .m-followRight{
+	float: right;
+}
+#g-follow strong{
+	color: #39a030;
+}
+#g-follow strong span{
+	vertical-align: 2px;
+}
+#g-follow .m-follow{
+	margin-left: 30px;
+	width: 54px;
+	height: 21px;
+	background-color: #21a557;
+	color: #fff;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+	margin-right: 13px;
+}
+#g-follow .m-follow a{
+	color: #fff;
+}
+#g-follow .m-follow a:hover{
+	text-decoration: underline;
+	color: #39a030;
+}
+#g-follow .m-fans{
+	font-size: 12px;
+	color: #666;
+}
+/* 关注 右 */
+#g-follow .m-followRight a{
+	margin-left: 55px;
+	font-size: 16px;
+}
+#g-follow .m-followRight a:hover{
+	color: #21a557;
+}
+#g-follow .m-followRight img{
+	margin-left: 30px;
+	vertical-align: -3px;
+}
+
+/* 登录框 */
+#g-login{
+	width: 350px;
+	height: 260px;
+	position: absolute;
+	background-color: #fff;
+	padding: 30px 0px 0px 40px;
+	z-index: 1000;
+	display: none;
+}
+#g-login h3{
+	font-size: 18px;
+	color: #444;
+}
+#g-login img{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	cursor: pointer;
+}
+#g-login input,#g-login button{
+	width: 295px;
+	height: 45px;
+	line-height: 45px;
+	border: none;
+	margin-top: 20px;
+	box-shadow: 1px 1px 1px 1px #d4d3d3,inset 1px 1px 1px 0px #d4d3d3;
+}
+#g-login input{
+	text-indent: 10px;
+	background-color: #fafafa;
+}
+#g-login button{
+	background-color: #1da73e;
+	color: #fff;
+	cursor: pointer;
+}
+
+/* 轮播图 */
+#g-carousel{
+	width: 1616px;
+	height: 460px;
+	position: relative;
+}
+#g-carousel img{
+	position: absolute;
+	left: 0;  bottom: 0;
+	opacity:0;
+}
+#g-carousel div{
+	position: absolute;
+	left: 0; bottom: 0;
+	width: 1616px;
+	height: 54px;
+	line-height: 54px;
+	text-align: center;
+}
+#g-carousel div span{
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	border-radius: 5px;
+	background-color: #fff;
+	cursor: pointer;
+}
+#g-carousel div span.m-sel{
+	background-color: #333;
+}
+
+
+/* 三个产品 */
+#g-threePro{
+	padding: 60px 207px;
+	width: 1202px;
+	height: 170px;
+	font-size: 14px;
+	color: #666;
+}
+#g-threePro .m-threePro{
+	margin-left: 80px;
+	float: left;
+	width: 320px;
+}
+#g-threePro .m-threePro img{
+	float: left;
+	margin: 5px 6px 90px;
+}
+#g-threePro .m-threePro h2{
+	margin-bottom: 20px;
+	font-size: 22px;
+	color: #333;
+}
+#g-threePro .m-threePro a{
+	color: #39a030;
+}
+#g-threePro .m-threePro a:hover{
+	text-decoration: underline;
+}
+#g-threePro .m-threePro p{
+	margin-bottom: 30px;
+}
+
+/* 工作环境 */
+#g-workEnv{
+	width: 1616px;
+	height: 222px;
+    overflow: hidden;
+}
+#g-workEnv .m-workEnv{
+	position: relative;
+	width: 3232px;
+	height: 222px;
+}
+#g-workEnv .m-workEnv img{
+	float: left;
+	border: 1px solid #f8f8f8;
+}
+
+/* tab 左 */
+#g-tab{
+	padding: 80px 207px 120px 192px;
+	width: 1202px;
+	background-color: #f8f8f8;
+}
+#g-tab h3,#g-tab h4{
+    overflow: hidden;
+    text-overflow:ellipsis;
+	color: #333;
+}
+#g-tab .m-tabLeft{
+	float: left;
+}
+#g-tab .m-tabRight{
+	float: right;
+	width: 225px;
+}#g-tab .m-tab{
+	margin-left: 15px;
+}
+#g-tab .m-tab button{
+	width: 200px;
+	height: 50px;
+	box-shadow: 1px 1px 1px 1px #d4d3d3;
+	border: none;
+	background-color: #fff;
+	cursor: pointer;
+}
+#g-tab .m-tab button.m-tabsel{
+	background-color: #39a030;
+	color: #fff;
+}
+.clearfix{
+    	clear: both;
+    	height: 0px;
+    	overflow: hidden;
+    	visibility: hidden;
+}
+#g-tab .m-tabLeft .m-proList{
+	width: 960px;
+	height: 1222px;
+}
+#g-tab .m-tabLeft .m-proList div{
+	float: left;
+	width: 223px;
+	height: 230px;
+	margin: 20px 0px 20px 15px;
+	background-color: #fff;
+	border: 1px solid #e6e6e6;
+	font-size: 12px;
+}
+#g-tab .m-tabLeft .m-proList h4,#g-tab .m-tabLeft .m-proList p,#g-tab .m-tabLeft .m-proList strong{
+	margin-left: 5px;
+}
+#g-tab .m-tabLeft .m-proList div:hover{
+	border: 1px solid #333;
+}
+#g-tab .m-tabLeft .m-proList h4{
+	height: 30px;
+	line-height: 30px;
+}
+#g-tab .m-tabLeft .m-proList p{
+	color: #999;
+}
+#g-tab .m-tabLeft .m-proList p.m-online{
+	height: 30px;
+	line-height: 30px;
+	text-indent: 20px;
+	background: url("前端作业图/在线人数.png") no-repeat 4px;
+	font-size: 9px;
+}
+#g-tab .m-tabLeft .m-proList strong{
+	color: #ff3f00;
+}
+
+/* tab 右 */
+#g-tab .m-tabRight .m-introduce{
+	margin-bottom: 18px;
+	width: 225px;
+	height: 230px;
+	background-color: #fff;
+	border: 1px solid #e6e6e6;
+}
+#g-tab .m-tabRight .m-introduce h3{
+	height: 55px;
+	line-height: 55px;
+	text-indent: 22px;
+	font-size: 16px;
+	color: #333;
+	border: 1px solid #e6e6e6;
+	border-top: none;
+}
+#g-tab .m-tabRight .m-introduce p{
+	margin-top: 20px;
+	font-size: 14px;
+	color: #666;
+	text-indent: 22px;
+}
+#g-tab .m-tabRight .m-introduce div{
+	height: 140px;
+	line-height: 140px;
+	background: url("前端作业图/视频.jpg") no-repeat 22px 8px;
+}
+#g-tab .m-tabRight .m-introduce div img{
+	margin: 40px 0px 0 90px;
+	cursor: pointer;
+}
+#g-tab .m-tabRight .m-hotList{
+	width: 225px;
+	height: 735px;
+	background-color: #fff;
+	border: 1px solid #e6e6e6;
+    overflow: hidden;
+	position: relative;
+}#g-tab .m-tabRight .hotList{
+	height: 1350px;
+	position: absolute;
+	top: 0px; left: 0;
+}
+#g-tab .m-tabRight .hotList div{
+	margin: 20px 0px 0px 20px;
+	width: 180px;
+	height: 51px;
+}
+#g-tab .m-tabRight .m-hotList img{
+	margin-right: 12px;
+	float: left;
+}
+#g-tab .m-tabRight h3{
+	height: 55px;
+	border: 1px solid #eee;
+	line-height: 55px;
+	text-indent: 20px;
+	background-color: #fff;
+}
+#g-tab .m-tabRight .m-hotList h4{
+	font-size: 14px;
+}
+#g-tab .m-tabRight .m-hotList p{
+	font-size: 10px;
+	color: #666;
+	margin-top: 10px;
+	text-indent: 13px;
+	background: url("前端作业图/在线人数二.png") no-repeat 60px;
+}
+/* 分页器 */
+#g-tab .m-pager{
+	float: right;
+}
+#g-tab .m-pager p{
+	font-size: 14px;
+	color: #333;
+}
+#g-tab .m-pager p button{
+	background-color: #9dd8b1;
+	border: none;
+	cursor: pointer;
+	color: #fff;
+}
+#g-tab .m-pager p a,#g-tab .m-pager p button{
+	width: 20px;
+	height: 20px;
+}
+#g-tab .m-pager p a{
+	display: inline-block;
+	text-align: center;
+}
+#g-tab .m-pager p a.m-pagersel{
+	color: #9dd8b1;
+}
+#g-tab .m-pager p a:hover{
+	background-color: #9dd8b1;
+	color: #fff;
+}
+
+/* 联系我们 */
+#g-friLink{
+	padding: 90px 207px 0 207px;
+	width: 1202px;
+	height: 260px;
+	background-color: #2c3339;
+	color: #a2a4a5;
+}
+#g-friLink div{
+	float: left;
+	margin-right: 100px;
+}
+#g-friLink .m-edu h2{
+	font-size: 22px;
+	color: #39a030;
+	margin-bottom:20px;
+}
+#g-friLink .m-edu p{
+	font-size: 12px;
+	line-height: 23px;
+}
+#g-friLink .m-list ul{
+	font-size: 12px;
+}
+#g-friLink .m-list li{
+	font-size: 14px;
+	line-height: 25px;
+}
+#g-friLink .m-list li a{
+	color: #a2a4a5;
+}
+#g-friLink .m-list li a:hover{
+	text-decoration: underline;
+}
+#g-friLink .m-list .weibo{
+	width: 65px;
+	background: url("前端作业图/微博.png") no-repeat 40px 5px;
+}
+
+/* 遮罩 */
+#g-mask{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	z-index: 999;
+	background-color: #000;
+	top: 0; left: 0;
+	opacity: 0.3;
+	display: none;
+}
+
+
+/* 详细介绍 */
+#g-detailed{
+	width: 430px;
+	position: absolute;
+	border: 1px solid #e6e6e6;
+	top: 0;  left: 0;
+	background-color: #fff;
+	display: none;
+}
+#g-detailed img{
+	float: left;
+	margin-right: 20px;
+}
+#g-detailed div.information{
+	height: 140px;
+}
+#g-detailed div.introduce{
+	background-color: #f8f8f8;
+}
+#g-detailed div{
+	padding: 20px;
+}
+#g-detailed h3{
+	font-size: 18px;
+	margin-bottom: 20px;
+}
+#g-detailed p{
+	font-size: 10px;
+	color: #666;
+	margin-bottom: 6px;
+}
+#g-detailed .introduce p{
+	font-size: 12px;
+}
+#g-detailed p.infP{
+	background: url("前端作业图/在线人数二.png") no-repeat 243px;
+	text-indent: 20px;
+	margin-bottom: 10px;
+}
+
+

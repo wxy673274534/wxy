@@ -1,0 +1,54 @@
+h3,button,p{
+	margin: 0;
+	padding: 0;
+}
+#container{
+	width: 500px;
+	margin: 0 auto;
+}
+#start{
+	text-align: center;
+}
+#start h3{
+	font-size: 30px;
+	color: #c0c0c0;
+}
+#start button{
+	width: 65px;
+	height: 25px;
+	border-radius: 5px;
+	color: #fff;
+	border: none;
+	background-color: red;
+	cursor: pointer;
+}
+#back{
+	height: 500px;
+	border-radius: 20px;
+	background-color: #800080;
+	position: relative;
+}
+#back .under{
+	width: 100px;
+	height: 100px;
+	border-radius: 10px;
+	background-color: #b8860b;
+	position: absolute;
+}
+#back .upper{
+	width: 100px;
+	height: 100px;
+	border-radius: 10px;
+	position: absolute;
+	font-size: 40px;
+	font-weight: bold;
+	line-height: 100px;
+	text-align: center;
+}
+
+
+
+
+
+
+
