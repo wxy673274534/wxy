@@ -1,6 +1,5 @@
 
-let tage=true;
-if(!tage){
+if(!(()=>{})){
 	alert("抱歉，您个手机不支持ES6");
 }
 
