@@ -187,8 +187,8 @@ document.ontouchend=(event)=>{
 					gameOver();
 				},400);
 			}
-		}else{                      //top
-			if(moveTop()){
+		}else{                      //left
+			if(moveLeft()){          
 				setTimeout(()=>{
 					random();
 					deleteNode();
@@ -207,8 +207,8 @@ document.ontouchend=(event)=>{
 					gameOver();
 				},400);
 			}
-		}else{                      //left
-			if(moveLeft()){
+		}else{                      
+			if(moveTop()){            //top
 				setTimeout(()=>{
 					random();
 					deleteNode();

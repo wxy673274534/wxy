@@ -41,7 +41,10 @@ h3,button,p{
 	line-height: 100%;
 	text-align: center;
 }
-
+p{
+	font-size: 20px;
+	text-align: center;
+}
 
 
 
