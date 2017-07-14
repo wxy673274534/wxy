@@ -1,3 +1,9 @@
+
+let tage=true;
+if(!tage){
+	alert("抱歉，您个手机不支持ES6");
+}
+
 let arr=[];
 let start=document.getElementById("start");
 let staBut=start.getElementsByTagName("button")[0];
@@ -123,7 +129,7 @@ refresh();
 document.onkeydown=(event)=>{
 	let e=event || window.event;
 	if(e.keyCode==37){ 	//left
-		if(moveLeft()){
+		if(!!moveLeft()){
 			setTimeout(()=>{
 				random();
 				deleteNode();
@@ -254,7 +260,7 @@ canYouMove3=()=>{
 //下
 canYouMove4=()=>{
 	for(let i=0;i<3;i++){
-		for(let j=1;j<4;j++){
+		for(let j=0;j<4;j++){
 			if(arr[i+1][j]==0 || arr[i+1][j]==arr[i][j]){
 				return true;
 			};
@@ -283,7 +289,7 @@ obstacle2=(x,y1,y2)=>{
 };
 //上
 obstacle3=(x1,x2,y)=>{
-	for(let i=x1-1;i>x2;i--){
+	for(let i=x2+1;i<x1;i++){
 		if(arr[i][y]!=0){
 			return false;
 		};
@@ -292,7 +298,7 @@ obstacle3=(x1,x2,y)=>{
 };
 //下
 obstacle4=(x1,x2,y)=>{
-	for(let i=x1+1;i<x2;i++){
+	for(let i=x2-1;i>x1;i--){
 		if(arr[i][y]!=0){
 			return false;
 		};
