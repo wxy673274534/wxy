@@ -3,7 +3,7 @@ h3,button,p{
 	padding: 0;
 }
 #container{
-	width: 500px;
+	max-width: 500px;
 	margin: 0 auto;
 }
 #start{
@@ -23,26 +23,22 @@ h3,button,p{
 	cursor: pointer;
 }
 #back{
-	height: 500px;
-	border-radius: 20px;
+	max-height: 500px;
+	border-radius: 4%;
 	background-color: #800080;
 	position: relative;
 }
 #back .under{
-	width: 100px;
-	height: 100px;
-	border-radius: 10px;
+	border-radius: 10%;
 	background-color: #b8860b;
 	position: absolute;
 }
 #back .upper{
-	width: 100px;
-	height: 100px;
-	border-radius: 10px;
+	border-radius: 10%;
 	position: absolute;
 	font-size: 40px;
 	font-weight: bold;
-	line-height: 100px;
+	line-height: 100%;
 	text-align: center;
 }
 

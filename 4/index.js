@@ -1,7 +1,21 @@
-var arr=[];
-var start=document.getElementById("start");
-var staBut=start.getElementsByTagName("button")[0];
-var staSpan=start.getElementsByTagName("span")[0];
+let arr=[];
+let start=document.getElementById("start");
+let staBut=start.getElementsByTagName("button")[0];
+let staSpan=start.getElementsByTagName("span")[0];
+
+let startX=0;
+let startY=0;
+let endX=0;
+let endY=0;
+
+//设置百分比宽高，以适应移动端
+let docuWidth=window.screen.availWidth;
+let container=document.getElementById("container");
+let back=document.getElementById("back");
+container.style.width=0.92*docuWidth+"px";
+back.style.height=0.92*docuWidth+"px";
+let xiaoWidth=0.18*docuWidth>100?100:0.18*docuWidth;
+let jianju=0.04*docuWidth>20?20:0.04*docuWidth;
 
 //判断游戏是否结束
 gameOver=()=>{
@@ -31,8 +45,10 @@ initi=()=>{
 		arr[i]=[];
 		for(let j=0;j<4;j++){
 			let under=document.getElementById("under-"+i+"-"+j);
-			under.style.top=20+120*i+"px";
-			under.style.left=20+120*j+"px";
+			under.style.top=jianju+(xiaoWidth+jianju)*i+"px";
+			under.style.left=jianju+(xiaoWidth+jianju)*j+"px";
+			under.style.width=xiaoWidth+"px";
+			under.style.height=xiaoWidth+"px";
 			arr[i][j]=0;
 		};
 	} ;
@@ -69,7 +85,6 @@ random=()=>{
 
 //刷新upper的位置
 deleteNode=()=>{
-	const back=document.getElementById("back");
 	for(let i=0;i<4;i++){
 		for(let j=0;j<4;j++){
 			let up=document.getElementById("upper-"+i+"-"+j);	
@@ -84,8 +99,11 @@ refresh=()=>{
 			back.appendChild(upper);
 			upper.className="upper";
 			upper.id="upper-"+i+"-"+j;
-			upper.style.top=20+120*i+"px";
-			upper.style.left=20+120*j+"px";
+			upper.style.top=jianju+(xiaoWidth+jianju)*i+"px";
+			upper.style.left=jianju+(xiaoWidth+jianju)*j+"px";
+			upper.style.width=xiaoWidth+"px";
+			upper.style.height=xiaoWidth+"px";
+			upper.style.lineHeight=xiaoWidth+"px";
 			upper.innerText=arr[i][j];
 			if(arr[i][j]==0){
 				upper.style.display="none";
@@ -104,7 +122,7 @@ refresh();
 //按键移动
 document.onkeydown=(event)=>{
 	let e=event || window.event;
-	if(event.keyCode==37){ 	//left
+	if(e.keyCode==37){ 	//left
 		if(moveLeft()){
 			setTimeout(()=>{
 				random();
@@ -113,7 +131,7 @@ document.onkeydown=(event)=>{
 				gameOver();
 			},400);
 		}
-	}else if(event.keyCode==39){  //right
+	}else if(e.keyCode==39){  //right
 		if(moveRight()){
 			setTimeout(()=>{
 				random();
@@ -122,7 +140,7 @@ document.onkeydown=(event)=>{
 				gameOver();
 			},400);
 		}
-	}else if(event.keyCode==38){  //top
+	}else if(e.keyCode==38){  //top
 		if(moveTop()){
 			setTimeout(()=>{
 				random();
@@ -131,7 +149,7 @@ document.onkeydown=(event)=>{
 				gameOver();
 			},400);
 		}
-	}else if(event.keyCode==40){  //bottom
+	}else if(e.keyCode==40){  //bottom
 		if(moveBottom()){
 			setTimeout(()=>{
 				random();
@@ -142,6 +160,63 @@ document.onkeydown=(event)=>{
 		}
 	}
 }
+
+
+//移动端触控移动
+document.ontouchstart=function(event){
+	let e=event || window.event;
+	startX=e.touches[0].pageX;
+	startY=e.touches[0].pageY;
+}
+document.ontouchend=function(event){
+	let e=event || window.event;
+	endX=e.changedTouches[0].pageX;
+	endY=e.changedTouches[0].pageY; 
+	let deltaX=endX-startX;
+	let deltaY=endY-startY;
+	if(Math.abs(deltaX)>=Math.abs(deltaY)){   //x轴
+		if(deltaX>0){				//right
+			if(moveRight()){
+				setTimeout(()=>{
+					random();
+					deleteNode();
+					refresh();
+					gameOver();
+				},400);
+			}
+		}else{                      //top
+			if(moveTop()){
+				setTimeout(()=>{
+					random();
+					deleteNode();
+					refresh();
+					gameOver();
+				},400);
+			}
+		}
+	}else{                                   //y轴
+		if(deltaY>0){				//bottom
+			if(moveBottom()){
+				setTimeout(()=>{
+					random();
+					deleteNode();
+					refresh();
+					gameOver();
+				},400);
+			}
+		}else{                      //left
+			if(moveLeft()){
+				setTimeout(()=>{
+					random();
+					deleteNode();
+					refresh();
+					gameOver();
+				},400);
+			}
+		}
+	}
+}
+
 //判断是否能移动
 //左
 canYouMove1=()=>{
@@ -344,21 +419,21 @@ moveBottom=()=>{
 //运动函数
 //左右运动
 moveFnLeft=(i,k,j)=>{
-	let numLeft=20+120*j;
+	let numLeft=jianju+(xiaoWidth+jianju)*j;
 	let oDiv=document.getElementById("upper-"+i+"-"+j);
 	var time=setInterval(()=>{
 		if(k>=j){
-			numLeft+=10;
-			if(numLeft>=20+120*k){
-				numLeft=20+120*k
+			numLeft+=0.1*xiaoWidth;
+			if(numLeft>=jianju+(xiaoWidth+jianju)*k){
+				numLeft=jianju+(xiaoWidth+jianju)*k
 				oDiv.style.left=numLeft+"px";
 				clearInterval(time);
 			}
 		}
 		if(k<=j){
-			numLeft-=10;
-			if(numLeft<=20+120*k){
-				numLeft=20+120*k
+			numLeft-=0.1*xiaoWidth;
+			if(numLeft<=jianju+(xiaoWidth+jianju)*k){
+				numLeft=jianju+(xiaoWidth+jianju)*k
 				oDiv.style.left=numLeft+"px";
 				clearInterval(time);
 			}
@@ -368,21 +443,21 @@ moveFnLeft=(i,k,j)=>{
 };
 //上下运动
 moveFnTop=(i,k,j)=>{
-	let numLeft=20+120*i;
+	let numLeft=jianju+(xiaoWidth+jianju)*i;
 	let oDiv=document.getElementById("upper-"+i+"-"+j);
 	var time=setInterval(()=>{
 		if(k>=i){
-			numLeft+=10;
-			if(numLeft>=20+120*k){
-				numLeft=20+120*k
+			numLeft+=0.1*xiaoWidth;
+			if(numLeft>=jianju+(xiaoWidth+jianju)*k){
+				numLeft=jianju+(xiaoWidth+jianju)*k
 				oDiv.style.top=numLeft+"px";
 				clearInterval(time);
 			}
 		}
 		if(k<=i){
-			numLeft-=10;
-			if(numLeft<=20+120*k){
-				numLeft=20+120*k
+			numLeft-=0.1*xiaoWidth;
+			if(numLeft<=jianju+(xiaoWidth+jianju)*k){
+				numLeft=jianju+(xiaoWidth+jianju)*k
 				oDiv.style.top=numLeft+"px";
 				clearInterval(time);
 			}
