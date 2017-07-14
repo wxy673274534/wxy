@@ -1,8 +1,6 @@
-
-if(!(()=>{})){
-	alert("抱歉，您个手机不支持ES6");
-}
-
+if(!!(()=>{})){
+	alert("抱歉，您的手机不支持ES6");
+};
 let arr=[];
 let start=document.getElementById("start");
 let staBut=start.getElementsByTagName("button")[0];
@@ -168,12 +166,12 @@ document.onkeydown=(event)=>{
 
 
 //移动端触控移动
-document.ontouchstart=function(event){
+document.ontouchstart=(event)=>{
 	let e=event || window.event;
 	startX=e.touches[0].pageX;
 	startY=e.touches[0].pageY;
 }
-document.ontouchend=function(event){
+document.ontouchend=(event)=>{
 	let e=event || window.event;
 	endX=e.changedTouches[0].pageX;
 	endY=e.changedTouches[0].pageY; 
