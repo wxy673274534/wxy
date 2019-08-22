@@ -18,24 +18,36 @@
     </div>
     <div class="effect">
         <div class="info">
-            <p>cubic-bezier(0,0,1,1)</p>
+            <span>cubic-bezier(0,0,1,1)</span>
             <button>复制</button>
         </div>
         <div class="list">
-            <canvas></canvas>
-            <canvas></canvas>
-            <canvas></canvas>
-            <canvas></canvas>
-            <canvas></canvas>
+            <div>
+                <canvas class="select"></canvas>
+                <p>linear</p>
+            </div>
+            <div>
+                <canvas></canvas>
+                <p>ease</p>
+            </div><div>
+                <canvas></canvas>
+                <p>ease-in</p>
+            </div><div>
+                <canvas></canvas>
+                <p>ease-out</p>
+            </div><div>
+                <canvas></canvas>
+                <p>ease-in-out</p>
+            </div>
         </div>
-        <div>
+        <div class="control">
             <button>横向</button>
             <button>纵向</button>
-            <label for="animTime">时间：<input id="animTime" type="number" />s</label>
+            <label for="animTime">时间：<input id="animTime" type="number" value="1" />s</label>
         </div>
         <div class="controlGroup">
             <button>开始</button>
-            <div>
+            <div class="bt">
                 <span></span>
                 <span></span>
             </div>

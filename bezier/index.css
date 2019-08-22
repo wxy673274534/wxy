@@ -92,18 +92,25 @@ button{
     letter-spacing: 1px;
 }
 .effect > .list{
-    margin: 30px 0;
+    margin: 20px 0;
+    font-size: 0;
 }
-.effect > .list > canvas{
+.effect > .list > div{
     display: inline-block;
-    width: 100px;
-    height: 100px;
-    background-color: #eee;
+    text-align: center;
+    font-size: 14px;
+}
+.effect > .list canvas{
+    margin-right: 10px;
+    width: 120px;
+    height: 120px;
     border-radius: 5px;
+    background-color: #eee;
     cursor: pointer;
 }
-.effect > .list > canvas.select{
+.effect > .list canvas.select{
     background-color: rgb(228, 118, 114);
+    border-color: rgb(228, 118, 114);
 }
 .effect #animTime{
     width: 30px;
@@ -112,5 +119,39 @@ button{
     display: none;
 }
 .effect > .controlGroup{
-    margin-top: 30px;
+    margin-top: 20px;
+    height: calc(100% - 450px);
+}
+.effect > .controlGroup > div{
+    width: 100%;
+    height: calc(100% - 25px);
+    text-align: center;
+    font-size: 0;
+}
+.effect > .controlGroup > div.bt.anim > span{
+    transform: translateY(350px);
+    -webkit-transform: translateY(350px);
+}
+.effect > .controlGroup > div.lr{
+    writing-mode: vertical-lr;
+}
+.effect > .controlGroup > div.lr.anim > span{
+    transform: translateX(350px);
+    -webkit-transform: translateX(350px);
+}
+.effect > .controlGroup span{
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #999;
+    transition: transform 1s linear,-webkit-transform 1s linear;
+    -webkit-transition: transform 1s linear,-webkit-transform 1s linear;
+}
+.effect > .controlGroup span:first-of-type{
+    margin-inline-end: 20px;
+    -webkit-margin-inline-end: 20px;
+    background-color: rgb(19, 92, 202);
+    transition-timing-function: cubic-bezier(0,0,1,1);
+    -webkit-transition-timing-function: cubic-bezier(0,0,1,1);
 }

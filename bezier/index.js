@@ -3,7 +3,7 @@
         ct=myC.getContext("2d"),
         winH=myC.clientHeight,
         [but_1,but_2]=document.getElementsByClassName('controlBut'),
-        _bezierInfo=document.getElementsByClassName('info')[0].getElementsByTagName('p')[0];
+        _bezierInfo=document.getElementsByClassName('info')[0].getElementsByTagName('span')[0];
         _but1_y = winH/2 + 150,
         _but2_y = winH/2 -150,
         _q=[0 , _but1_y],
@@ -34,6 +34,7 @@
             window.getSelection().selectAllChildren(_bezierInfo);
             document.execCommand ("Copy");
         }
+        _initControl();
         _painting();
     })();
 
@@ -69,9 +70,93 @@
         _countBezier();
     }
     function _countBezier(){
-        _bezierInfo.innerText=`cubic-bezier(${_fn(_c1[0]/300)},${_fn(-((_c1[1] - _but1_y)/300))},${_fn(_c2[0]/300)},${_fn((_c2[1] - _but2_y)/300)})`;
+        _bezierInfo.innerText=`cubic-bezier(${_fn(_c1[0]/300)},${_fn(-((_c1[1] - _but1_y)/300))},${_fn(_c2[0]/300)},${_fn((_but1_y - _c2[1])/300)})`;
         function _fn(n){
             return Number(n.toFixed(2));
+        }
+    }
+    function _initControl(){
+        let arr=[
+            [0,0,1,1],
+            [0.25, 0.1, 0.25, 1],
+            [0.42, 0, 1, 1],
+            [0, 0, 0.58, 1],
+            [0.42, 0, 0.58, 1],
+        ],_e=document.getElementsByClassName('list')[0].getElementsByTagName('canvas'),
+        _ct,_item,_oDiv=document.getElementsByClassName('controlGroup')[0],
+        _startBut=_oDiv.getElementsByTagName('button')[0],
+        _direcbut=document.getElementsByClassName('control')[0].getElementsByTagName('button'),
+        _input=document.getElementById('animTime'),_span;
+        _oDiv=_oDiv.getElementsByTagName('div')[0];
+        _span=_oDiv.getElementsByTagName('span');
+        for(let i=0;i<arr.length;i++){
+            _e[i].height=_e[i].width=120;
+            _item=arr[i];
+            _item[0]=_item[0]*100 + 10;
+            _item[2]=_item[2]*100 + 10;
+            _item[1]=(1 - _item[1])*100 + 10;
+            _item[3]=(1 - _item[3])*100 + 10;
+
+            _ct=_e[i].getContext("2d");
+            // 辅助线
+            _ct.strokeStyle="#fff";
+            _ct.lineWidth=2;
+            _ct.beginPath();
+            _ct.moveTo(10,110);
+            _ct.lineTo(_item[0],_item[1]);
+            _ct.moveTo(110,10);
+            _ct.lineTo(_item[2],_item[3]);
+            _ct.stroke();
+            // 曲线
+            _ct.beginPath();
+            _ct.moveTo(10,110);
+            _ct.bezierCurveTo(..._item,110,10);
+            _ct.stroke();
+            //圆点
+            _ct.fillStyle="#fff";
+            _ct.beginPath();
+            _ct.arc(_item[0],_item[1],4,0,2*Math.PI);
+            _ct.fill();
+            _ct.beginPath();
+            _ct.arc(_item[2],_item[3],4,0,2*Math.PI);
+            _ct.fill();
+
+            _e[i].onclick=function(){
+                for(let k=0;k<_e.length;k++){
+                    if(_e[k].className==="select"){
+                        _e[k].className='';
+                        break;
+                    }
+                }
+                this.className="select";
+                _span[1].style.transitionTimingFunction=this.nextElementSibling.innerText;
+            }
+        }
+
+        _startBut.onclick=function(){
+            let _r=/(\sanim|anim)/;
+            for(let i=0;i<2;i++){
+                _span[i].style.transitionDuration=_input.value + 's';
+            }
+            _span[0].style.transitionTimingFunction=_bezierInfo.innerText;
+            if(_r.test(_oDiv.className)){
+                _oDiv.className= _oDiv.className.replace(_r,'');
+            }else{
+                _oDiv.className+=' anim';
+            }
+        }
+
+        _direcbut[0].onclick=function(){
+            if(/(\sbt|bt)/.test(_oDiv.className)){
+                _oDiv.className= _oDiv.className.replace(/(\sbt|bt)/,'');
+                _oDiv.className+=' lr';
+            }
+        }
+        _direcbut[1].onclick=function(){
+            if(/(\slr|lr)/.test(_oDiv.className)){
+                _oDiv.className= _oDiv.className.replace(/(\slr|lr)/,'');
+                _oDiv.className+=' bt';
+            }
         }
     }
 })();
