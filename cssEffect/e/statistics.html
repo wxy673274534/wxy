@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <style>
+        body{
+            counter-reset: con;
+        }
+        label{
+            display: block;
+        }
+        input:checked{
+            counter-increment: con;
+        }
+        p > span::before{
+            content: counter(con);
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <label><input type="checkbox">一</label>
+        <label><input type="checkbox">二</label>
+        <label><input type="checkbox">三</label>
+        <label><input type="checkbox">四</label>
+        <label><input type="checkbox">五</label>
+        <label><input type="checkbox">六</label>
+        <label><input type="checkbox">七</label>
+        <label><input type="checkbox">八</label>
+        <label><input type="checkbox">九</label>
+        <label><input type="checkbox">十</label>
+    </div>
+    <p>一共选中的<span></span>项</p>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <style>
+        .oDiv{
+            counter-reset: coun;
+        }
+        .add::before{
+            display: inline-block;
+            width: 70px;
+            content: counters(coun,'-');
+            counter-increment: coun;
+        }
+        .oDiv span{
+            counter-reset: coun;
+        }
+    </style>
+</head>
+<body>
+    <div class="oDiv">
+        <div class="add">奥迪和工会
+            <div class="oDiv">
+                <div class="add">切过去过任务和</div>
+                <div class="add">上发表你不用软件</div>
+                <div class="add">
+                    <div class="oDiv">
+                        <div class="add">奥恩头好疼</div>
+                        <div class="add">是否还要让你输入该</div>
+                        <div class="add">大本营木么王夫人</div>
+                        <div class="add">大哥那就看，我哦啊是GV</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="add"></div>
+    </div>
+</body>
+<script>
+    (function(){
+        var oDiv=document.getElementsByTagName('div');
+        for(var i=0;i<oDiv.length;i++){
+            oDiv[i].onclick=function(e){
+                this.parentElement.removeChild(this)
+                e.stopPropagation();
+            }
+        }
+    })();
+</script>
+</html>

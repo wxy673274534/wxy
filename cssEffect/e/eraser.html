@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <style>
+        html,body{
+            height: 100%;
+            overflow: hidden;
+        }
+        .d1{
+            position: relative;
+            margin: 100px auto;
+            width: 320px;
+            height: 160px;
+            background-color: #000;
+        }
+        .d1 img{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation-fill-mode: forwards;
+        }
+        button{
+            display: block;
+            margin: 0 auto;
+        }
+        .img5{
+            animation: img5 3s 2s;
+        }
+        .img4{
+            animation: img5 3s 5s;
+        }
+        .img3{
+            animation: img5 3s 8s;
+        }
+        .img2{
+            animation: img5 3s 11s;
+        }
+        @keyframes img5{
+            0%{
+                clip-path: polygon(0 0,0 100%,40px 100%,40px 100%,70px 100%,70px 100%,120px 100%,120px 100%,150px 100%,150px 100%,
+                    200px 100%,200px 100%,230px 100%,230px 100%,280px 100%,280px 100%,310px 100%,310px 100%,
+                    100% 100%,100% 0,270px 0,270px 0,240px 0,240px 0,190px 0,190px 0,160px 0,
+                    160px 0,110px 0,110px 0,80px 0,80px 0,30px 0,30px 0,0 0,0 0);
+                opacity: 1;
+            }
+            5%{
+                clip-path: polygon(0 0,0 100%,40px 100%,40px 100%,70px 100%,70px 100%,120px 100%,120px 100%,150px 100%,150px 100%,
+                    200px 100%,200px 100%,230px 100%,230px 100%,280px 100%,280px 100%,310px 100%,310px 100%,
+                    100% 100%,100% 0,270px 0,270px 0,240px 0,240px 0,190px 0,190px 0,160px 0,
+                    160px 0,110px 0,110px 0,80px 0,80px 0,30px 0,40px 100%,10px 100%,0 0);
+                opacity: 1;
+            }
+            10%{
+                clip-path: polygon(0 0,0 100%,40px 100%,50px 0,80px 0,70px 100%,120px 100%,120px 100%,150px 100%,150px 100%,
+                    200px 100%,200px 100%,230px 100%,230px 100%,280px 100%,280px 100%,310px 100%,310px 100%,
+                    100% 100%,100% 0,270px 0,270px 0,240px 0,240px 0,190px 0,190px 0,160px 0,
+                    160px 0,110px 0,110px 0,80px 0,80px 0,30px 0,40px 100%,10px 100%,0 0);
+                opacity: 1;
+            }
+            15%{
+                clip-path: polygon(0 0,0 100%,40px 100%,50px 0,80px 0,70px 100%,120px 100%,120px 100%,150px 100%,150px 100%,
+                    200px 100%,200px 100%,230px 100%,230px 100%,280px 100%,280px 100%,310px 100%,310px 100%,
+                    100% 100%,100% 0,270px 0,270px 0,240px 0,240px 0,190px 0,190px 0,160px 0,
+                    160px 0,110px 0,120px 100%,90px 100%,80px 0,30px 0,40px 100%,10px 100%,0 0);
+                opacity: 1;
+            }
+            20%{
+                clip-path: polygon(0 0,0 100%,40px 100%,50px 0,80px 0,70px 100%,120px 100%,130px 0,160px 0,150px 100%,
+                    200px 100%,200px 100%,230px 100%,230px 100%,280px 100%,280px 100%,310px 100%,310px 100%,
+                    100% 100%,100% 0,270px 0,270px 0,240px 0,240px 0,190px 0,190px 0,160px 0,
+                    160px 0,110px 0,120px 100%,90px 100%,80px 0,30px 0,40px 100%,10px 100%,0 0);
+                opacity: 1;
+            }
+            25%{
+                clip-path: polygon(0 0,0 100%,40px 100%,50px 0,80px 0,70px 100%,120px 100%,130px 0,160px 0,150px 100%,
+                    200px 100%,200px 100%,230px 100%,230px 100%,280px 100%,280px 100%,310px 100%,310px 100%,
+                    100% 100%,100% 0,270px 0,270px 0,240px 0,240px 0,190px 0,200px 100%,170px 100%,
+                    160px 0,110px 0,120px 100%,90px 100%,80px 0,30px 0,40px 100%,10px 100%,0 0);
+                opacity: 1;
+            }
+            30%{
+                clip-path: polygon(0 0,0 100%,40px 100%,50px 0,80px 0,70px 100%,120px 100%,130px 0,160px 0,150px 100%,
+                    200px 100%,210px 0,240px 0,230px 100%,280px 100%,280px 100%,310px 100%,310px 100%,
+                    100% 100%,100% 0,270px 0,270px 0,240px 0,240px 0,190px 0,200px 100%,170px 100%,
+                    160px 0,110px 0,120px 100%,90px 100%,80px 0,30px 0,40px 100%,10px 100%,0 0);
+                opacity: 1;
+            }
+            35%{
+                clip-path: polygon(0 0,0 100%,40px 100%,50px 0,80px 0,70px 100%,120px 100%,130px 0,160px 0,150px 100%,
+                    200px 100%,210px 0,240px 0,230px 100%,280px 100%,280px 100%,310px 100%,310px 100%,
+                    100% 100%,100% 0,270px 0,280px 100%,250px 100%,240px 0,190px 0,200px 100%,170px 100%,
+                    160px 0,110px 0,120px 100%,90px 100%,80px 0,30px 0,40px 100%,10px 100%,0 0);
+                opacity: 1;
+            }
+            40%{
+                clip-path: polygon(0 0,0 100%,40px 100%,50px 0,80px 0,70px 100%,120px 100%,130px 0,160px 0,150px 100%,
+                    200px 100%,210px 0,240px 0,230px 100%,280px 100%,290px 0,320px 0,310px 100%,
+                    100% 100%,100% 0,270px 0,280px 100%,250px 100%,240px 0,190px 0,200px 100%,170px 100%,
+                    160px 0,110px 0,120px 100%,90px 100%,80px 0,30px 0,40px 100%,10px 100%,0 0);
+                opacity: 1;
+            }
+            100%{
+                clip-path: polygon(0 0,0 100%,40px 100%,50px 0,80px 0,70px 100%,120px 100%,130px 0,160px 0,150px 100%,
+                    200px 100%,210px 0,240px 0,230px 100%,280px 100%,290px 0,320px 0,310px 100%,
+                    100% 100%,100% 0,270px 0,280px 100%,250px 100%,240px 0,190px 0,200px 100%,170px 100%,
+                    160px 0,110px 0,120px 100%,90px 100%,80px 0,30px 0,40px 100%,10px 100%,0 0);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="d1">
+        <img src="../../2/img/carousel1.jpg" />
+        <img class="img2" src="../../2/img/carousel2.jpg" />
+        <img class="img3" src="../../2/img/carousel3.jpg" />
+        <img class="img4" src="../../2/img/carousel4.jpg" />
+        <img class="img5" src="../../2/img/carousel1.jpg" />
+    </div>
+    <button><a href="">重新播放</a></button>
+</body>
+</html>
