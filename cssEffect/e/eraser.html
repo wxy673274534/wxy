@@ -16,9 +16,8 @@
             margin: 100px auto;
             width: 320px;
             height: 160px;
-            background-color: #000;
         }
-        .d1 img{
+        .d1.anim img{
             position: absolute;
             width: 100%;
             height: 100%;
@@ -29,16 +28,16 @@
             display: block;
             margin: 0 auto;
         }
-        .img5{
+        .anim .img5{
             animation: img5 3s 2s;
         }
-        .img4{
+        .anim .img4{
             animation: img5 3s 5s;
         }
-        .img3{
+        .anim .img3{
             animation: img5 3s 8s;
         }
-        .img2{
+        .anim .img2{
             animation: img5 3s 11s;
         }
         @keyframes img5{
@@ -117,12 +116,40 @@
 </head>
 <body>
     <div class="d1">
-        <img src="../../2/img/carousel1.jpg" />
-        <img class="img2" src="../../2/img/carousel2.jpg" />
-        <img class="img3" src="../../2/img/carousel3.jpg" />
-        <img class="img4" src="../../2/img/carousel4.jpg" />
-        <img class="img5" src="../../2/img/carousel1.jpg" />
+        <img src=""/>
+        <img class="img2" src="" />
+        <img class="img3" src="" />
+        <img class="img4" src="" />
+        <img class="img5" src="" alt="图片加载中"/>
     </div>
     <button><a href="">重新播放</a></button>
 </body>
+<!-- 无关js，用于缓存图片 -->
+<script>
+    (function(){
+        let arr=['https://wxy673274534.github.io/wxy/2/img/carousel1.jpg',
+        'https://wxy673274534.github.io/wxy/2/img/carousel2.jpg',
+        'https://wxy673274534.github.io/wxy/2/img/carousel3.jpg',
+        'https://wxy673274534.github.io/wxy/2/img/carousel4.jpg',],
+        _d=document.getElementsByClassName('d1')[0],
+        _e=_d.getElementsByTagName('img'),
+        myP=[];
+        for(let i=0;i<arr.length;i++){
+            myP.push(new Promise(function(r,t){
+                let _i=new Image();
+                _i.onload=function(){
+                    r(this.src);
+                }
+                _i.src=arr[i];
+            }))
+        }
+        Promise.all(myP).then(function(res){
+            for(let i=0;i<res.length;i++){
+                _e[i].src=res[i];
+            }
+            _e[_e.length-1].src=res[0];
+            _d.classList.toggle('anim');
+        });
+    })();
+</script>
 </html>
