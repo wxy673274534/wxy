@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+    <title>圆环菜单</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="renderer" content="webkit">
+	<meta name="force-rendering" content="webkit">
+	<style>
+		html,
+		body {
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+		}
+		body {
+			background-color: #fff;
+		}
+		.ringMenu {
+			/* display: none; */
+			position: relative;
+			margin: 200px auto;
+			width: 300px;
+			height: 300px;
+		}
+		.mySvg {
+			width: 100%;
+			height: 100%;
+			overflow: visible;
+		}
+		.mySvg>circle:last-of-type {
+			transition: all 1s;
+			-webkit-transition: all 1s;
+			transform: rotateZ(-90deg);
+			transform-origin: 50% 50%;
+		}
+		.ringMenu>ul {
+			padding: 0;
+			margin: 0;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: calc(100% - 10px);
+			height: calc(100% - 10px);
+			transform: translate(-50%, -50%);
+			-webkit-transform: translate(-50%, -50%);
+			list-style-type: none;
+		}
+		.ringMenu>ul>li {
+			position: absolute;
+			top: 0;
+			left: 50%;
+			width: 0;
+			height: 0;
+			width: 30px;
+			height: 30px;
+		}
+		.ringMenu>ul>li a {
+			box-sizing: border-box;
+			display: inline-block;
+			width: 100%;
+			height: 100%;
+			border-radius: 50%;
+			background-color: #fff;
+			text-decoration: none;
+			text-align: center;
+			color: #000;
+		}
+		.ringMenu>ul>li a::before {
+			content: " ";
+			display: inline-block;
+			padding: 11.5px;
+			width: 5px;
+			height: 5px;
+			border: 1px solid rgba(198, 68, 252);
+			background-color: rgba(198, 68, 252);
+			border-radius: 50%;
+			box-shadow: inset 0 0 0 11.5px #fff;
+			transition: background .5s;
+			-webkit-transition: background .5s;
+			transition: box-shadow .5s, transform .5s, -webkit-transform .5s, background .5s;
+			-webkit-transition: box-shadow .5s, transform .5s, -webkit-transform .5s, background .5s;
+		}
+		.ringMenu>ul>li a::after {
+			content: " ";
+			position: absolute;
+			top: -55px;
+			left: 50%;
+			display: inline-block;
+			width: 2px;
+			height: 50px;
+			background-color: rgba(198, 68, 252);
+			transform-origin: 50% 100%;
+			-webkit-transform-origin: 50% 100%;
+			transform: translateX(-50%) scaleY(0);
+			-webkit-transform: translateX(-50%) scaleY(0);
+			transition: transform .5s, -webkit-transform .5s;
+			-webkit-transition: transform .5s, -webkit-transform .5s;
+		}
+		.ringMenu>ul>li a:hover::before {
+			transform: scale(1);
+			-webkit-transform: scale(1.1);
+		}
+		.ringMenu>ul>li a:hover::after,
+		.ringMenu>ul>li.select a::after {
+			transform: translateX(-50%) scaleY(1);
+			-webkit-transform: translateX(-50%) scaleY(1);
+		}
+		.ringMenu>ul>li.select a::before {
+			box-shadow: inset 0 0 0 11.5px rgba(198, 68, 252);
+			background-color: #fff;
+		}
+		.ringMenu>ul>li a>div {
+			display: none;
+			position: absolute;
+			top: -130px;
+			left: 50%;
+		}
+		.ringMenu>ul>li:first-of-type a>div {
+			top: -110px;
+		}
+		.ringMenu>ul>li a>div>span {
+			display: inline-block;
+		}
+		.ringMenu>ul>li a>div>span:last-of-type {
+			white-space: nowrap;
+		}
+		.ringMenu>ul>li a:hover>div,
+		.ringMenu>ul>li.select a>div {
+			display: block;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="ringMenu">
+		<svg class="mySvg">
+			<circle cx="250" cy="250" r="245" fill="rgba(0,0,0,0)" stroke="rgb(198, 68, 252)" stroke-width="2" />
+			<circle cx="250" cy="250" r="245" fill="rgba(0,0,0,0)" stroke="rgb(198, 68, 252)" stroke-width="5" />
+		</svg>
+	</div>
+</body>
+<script>
+
+
+	(function(ringMenu){
+		"function" != typeof Object.create && (Object.create = function(t, e) {
+			function r() {}
+			if ("object" != typeof t)throw TypeError();
+			r.prototype = t;
+			var n = new r;
+			if (t && (n.constructor = r),e !== undefined) {
+				if (e !== Object(e))throw TypeError();
+				Object.defineProperties(n, e)
+			}
+			return n;
+		});
+		this.RingMenu=ringMenu;
+	})(function(obj){
+		/*
+			obj参数
+			{
+				w:  number,   圆的直径, 默认300px
+				o:  arr,    菜单项
+				{
+					t:  菜单的标题
+					d:  菜单的描述
+					u:  链接
+				}
+				switch:  function,   切换菜单需要执行的函数
+				i: number,   默认选中的菜单下标,默认0，
+				// TODO 菜单按钮大小，颜色等以后在加，
+			}
+			返回对象的方法
+			getCurrentindex();   换回当前选中菜单的index
+			setItem(index,{});   设置某一项菜单
+			removeItem(index);   删除某一项菜单
+			addItem({},index);   增加一项菜单,第二个参数是插入位置，默认为最后
+		*/
+
+		var _o=(function init(){
+			obj.i || (obj.i=0);
+			obj.w || (obj.w=300);
+			obj.e=document.getElementsByClassName('ringMenu')[0];
+			obj.setO=function (num){
+				var _n= num  ? (this._li || this.o).length-num : 0 ;
+				this.Ocir.style.strokeDashoffset=(this.p/(this._li || this.o).length)*_n;
+			}
+			obj.setEStyle=function(l){
+				var _y=this.w/2-5,_deg = 360 / l.length;
+				for(var i=0;i<l.length;i++){
+					l[i].dataset.index=i;
+					l[i].style.cssText='transform-origin: 0 ' + _y + 'px;transform: rotate(' + _deg * i + 'deg) translate(-50%,-50%)';
+					l[i].children[0].children[0].style.transform='translateX(-50%) rotate('+-_deg*i+'deg)';
+				}
+			}
+			_createEl(obj.o);
+			var _ch=obj.e.children;
+			for(var i=0;i<_ch.length;i++){
+				if(_ch[i].tagName==="svg"){
+					_setRound(_ch[i].children);
+					obj.Ocir=_ch[i].children[1];
+					obj.p=obj.Ocir.getTotalLength();
+					obj.Ocir.style.strokeDasharray=obj.p;
+					break;
+				}
+			}
+			function _createEl(arr){
+				var _u=document.createElement('ul');
+				if(!arr.length)throw "参数‘o’必填，并且只能是长度大于0的数组";
+				for(var i=0;i<arr.length;i++){
+					_u.appendChild(_fn(arr[i],i));
+				}
+				obj.setEStyle(_u.children);
+				obj.e.style.width=obj.e.style.height=obj.w+'px';
+				obj.e.appendChild(_u);
+				obj.liL=_u.children;
+				function _fn(o,i){
+					var _e=document.createElement('li');
+					i === obj.i && (_e.className='select');
+					_e.innerHTML='<a href="'+ (o.u || '#') +'"><div><span>'+o.t+'</span>'+(o.d ? "<span>"+o.d+"</span>":'')+'</div></a>';
+					return _e;
+				}
+			}
+			function _setRound(el){
+				var _arr=['cx','cy','r'],_r=obj.w/2,_v=[_r,_r,_r-5];
+				for(var i=0;i<el.length;i++){
+					for(var j=0;j<_arr.length;j++){
+						el[i].setAttribute(_arr[j],_v[j]);
+					}
+				}
+			}
+			return _cope(obj);
+		})();
+		(function bindEvent() {
+			var _e=_o.liL;
+			for(var i=0;i<_e.length;i++){
+				var _a=_e[i];
+				_a.onmouseover = function (e) {
+					if (/(select)/.test(this.parentElement.className) || !this.dataset.index) return;
+					setTimeout(function () {
+						_o.setO(~~this.dataset.index);
+					}.bind(this), 500);
+				}
+				_a.onmouseout = function (e) {
+					setTimeout(function () {
+						_o.setO(_o.getCurrentindex());
+					}, 500);
+				}
+				_a.onclick = function (e) {
+					var _li = (_o._li||_o.liL),i=~~this.dataset.index;
+					for (var j = 0; j < _li.length; j++) {
+						if (/(select)/.test(_li[j].className)) {
+							_li[j].className = '';
+							break;
+						}
+					}
+					_li[i].className = 'select';
+					_o.setO(i);
+					_o.switch && _t(_o.switch)==='function' && _o.switch(i);
+				}
+			}
+		})();
+		_o._li=Array.prototype.slice.call(_o.liL,0);
+		_o.getCurrentindex=function(){
+			for(var i=0;i<this._li.length;i++){
+				if(/(select)/.test(this._li[i].className)){
+					return i;
+				}
+			}
+		}
+		_o.setItem=function(i,obj){
+			var _e=this._li[i];
+			if(!_e)throw ('无效的下标');
+			obj.u && (_fn('a',0).setAttribute('href',obj.u))
+			obj.t && (_fn('span',0).innerHTML=obj.t);
+			obj.d && _fn('span',1) ? 
+			(_fn('span',1).innerHTML=obj.d):
+			(_fn('div',0).innerHTML+='<span>'+obj.d+'</span>');
+			function _fn(s,i){
+				return _e.getElementsByTagName(s)[i];
+			}
+		}
+		
+		_o.removeItem=function(i){
+			var _e=this._li[i],_i;
+			if(!_e)throw ('无效的下标');
+			if(_e.parentElement.removeChild(_e),this._li.splice(i,1)[0].className==='select'){
+				_i=this._li[i]? i : this._li.length-1;
+				this._li[_i].className='select';
+			};
+			this.setEStyle(this._li);
+			this.setO(_i);
+		}
+		_o.addItem=function(obj,i){
+			if(i && i>this._li.length)throw ('无效的下标');
+			var _e=document.createElement('li');
+			_e.innerHTML='<a href="'+ (obj.u || '#') +'"><div><span>'+obj.t+'</span>'+(obj.d ? "<span>"+obj.d+"</span>":'')+'</div></a>';
+			this._li[0].parentElement.appendChild(_e);
+			this._li.splice(i,0,_e);
+			this.setEStyle(this._li);
+			this.setO(this.getCurrentindex());
+		}
+		
+		
+		return Object.create(_o);
+
+
+		function _t(a){
+			return Object.prototype.toString.call(a).match(/\w+/g)[1].toLocaleLowerCase();
+		}
+		function _cope(obj){
+			var o={};
+			for(key in obj){  //函数先不管
+				if(/object/.test(_t(obj[key]))){
+					o[key]=_fn(_cope(obj[key]));
+				}else if(/array/.test(_t(obj[key]))){
+					var _k=key;
+					o[key]=_fn(_cope(obj[key]),true);
+					Object.defineProperties(o[_k].value,{
+						length: {
+							value: obj[_k].length,
+							enumerable: false,
+						}
+					});
+				}else{
+					o[key]=_fn(obj[key]);
+				}
+			}
+			return Object.defineProperties({},o);
+
+			function _fn(v,b){
+				return {
+					value: v,
+					enumerable: b || true,
+					writable: false,
+				}
+			}
+		}
+	});
+	var obj={
+		w: 100,
+		o: [{
+			t: '第一个标题',
+			d: '描述，描述，描述',
+		},{
+			t: '第二个标题',
+			d: '描述，描述，描述',
+		},{
+			t: '第三个标题',
+			d: '描述，描述，描述',
+		},{
+			t: '第四个标题',
+			d: '描述，描述，描述',
+		},{
+			t: '第五个标题',
+			d: '描述，描述，描述',
+		},{
+			t: '第六个标题',
+			d: '描述，描述，描述',
+		},{
+			t: '第七个标题',
+		}]
+	}
+	var _obj=new RingMenu(obj);
+	console.log(_obj);
+</script>
+
+</html>

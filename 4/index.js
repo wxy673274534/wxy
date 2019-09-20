@@ -1,6 +1,3 @@
-if(!(()=>{})){
-	alert("抱歉，您的手机不支持ES6");
-};
 let arr=[];
 let start=document.getElementById("start");
 let staBut=start.getElementsByTagName("button")[0];

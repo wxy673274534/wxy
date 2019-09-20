@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>feDisplacementMap练习</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <style>
+        .box{
+            width: 600px;
+            height: 320px;
+            position: relative;
+            background: url('../../2/img/carousel4.jpg') no-repeat center/100%;
+        }
+        .oDiv{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            color: #000;
+            font-size: 30px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 100%;
+        }
+        .oDiv:first-of-type{
+            background-image: url('../../2/img/carousel1.jpg');
+        }
+        .oDiv:nth-of-type(2){
+            background-image: url('../../2/img/carousel2.jpg');
+        }
+        .oDiv:nth-of-type(3){
+            background-image: url('../../2/img/carousel3.jpg');
+        }
+        .oDiv:last-of-type{
+            background-image: url('../../2/img/carousel4.jpg');
+        }
+        .oDiv:not(:first-of-type){
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <svg style="position: absolute;height: 0;opacity: 0;">
+        <defs>
+            <filter id="f">
+                <feImage xlink:href="" x="300" y="50" width="100" height="100" result="ripple"></feImage>
+                <feDisplacementMap xChannelSelector="G" yChannelSelector="R" color-interpolation-filters="sRGB" in="SourceGraphic" in2="ripple" scale="0"></feDisplacementMap>
+                <feComposite operator="in" in2="ripple"></feComposite>
+                <feComposite in2="SourceGraphic" width="600" height="320" x="0" y="0"></feComposite>
+            </filter>
+        </defs>
+    </svg>
+    <div class="box">
+        <div class="oDiv"></div>
+        <div class="oDiv"></div>
+        <div class="oDiv"></div>
+        <div class="oDiv"></div>
+    </div>
+    <p>feDisplacementMap公式： P'(x,y) ← P( x + scale * (XC(x,y) - 0.5), y + scale * (YC(x,y) - 0.5))</p>
+</body>
+<script>
+    // TODO 用base64有效果，将base64转成图片就没效果了，待研究
+    let dataDisplacementImg=(function(){
+        var t=document.createElement("canvas");
+        if(!t.getContext){
+            return
+        }
+        var e=t.getContext("2d");
+        var r=512,a=512,i=250,n=100;
+        var o=i-n;t.width=r;t.height=a;
+        var l=function(t,r,a,o){
+            var l=2*Math.PI/o.length;
+            var f=0;var s=null;
+            var c=null,u=null;
+            for(var d=0;d<o.length;d++){
+                c=o[d];
+                u=o[(d+1)%o.length];
+                var p=t+Math.cos(f)*a;
+                var g=t+Math.cos(f+l)*a;
+                var v=r+Math.sin(f)*a;
+                var h=r+Math.sin(f+l)*a;
+                e.beginPath();
+                s=e.createLinearGradient(p,v,g,h);
+                s.addColorStop(0,c);
+                s.addColorStop(1,u);
+                e.strokeStyle=s;
+                e.arc(t,r,a,f,f+l);
+                e.lineWidth=i-n;
+                e.stroke();
+                e.closePath();
+                f+=l
+            }
+        };
+        e.beginPath();
+        e.arc(r/2,a/2,i,0,Math.PI*2);
+        e.fillStyle="#7f7f7f";
+        e.fill();
+        l(r/2,a/2,n+o/2,["rgb(255,0,0)","rgb(0, 255, 0)","rgb(255,0,0)","rgb(0, 255, 0)"]);
+        var f=e.createRadialGradient(r/2,a/2,n,r/2,a/2,i);
+        f.addColorStop(0,"rgba(127,127,127,1)");
+        f.addColorStop(17/o,"rgba(115,115,115,.8)");
+        f.addColorStop(25/o,"rgba(115,115,115,0.1)");
+        f.addColorStop(28/o,"rgba(115,115,115,0.1)");
+        f.addColorStop(37/o,"rgba(115,104,104,.8)");
+        f.addColorStop(43/o,"rgba(115,104,104,1)");
+        f.addColorStop(44/o,"rgba(127,127,127,1)");
+        f.addColorStop(50/o,"rgba(127,127,127,.6)");
+        f.addColorStop(54/o,"rgba(127,127,127,0)");
+        f.addColorStop(61/o,"rgba(0,0,0,0)");
+        f.addColorStop(67/o,"rgba(0,0,0,1)");
+        f.addColorStop(78/o,"rgba(0,0,0,1)");
+        f.addColorStop(88/o,"rgba(0,0,0,0)");
+        f.addColorStop(100/o,"rgba(0,0,0,0)");
+        f.addColorStop(108/o,"rgba(0,0,0,1)");
+        f.addColorStop(117/o,"rgba(0,0,0,1)");
+        f.addColorStop(136/o,"rgba(0,0,0,0)");
+        f.addColorStop(1,"rgba(0,0,0,0)");
+        e.beginPath();e.arc(r/2,a/2,i,0,Math.PI*2);
+        e.fillStyle=f;
+        e.fill();
+        return t.toDataURL();
+    })();
+    document.getElementsByTagName('feImage')[0].setAttribute('xlink:href',dataDisplacementImg);
+    function rippleAnim(n){
+        let _feD=document.getElementsByTagName('feDisplacementMap')[0],
+            _feI=document.getElementsByTagName('feImage')[0];
+        n.addEventListener('click',function(e){
+            let _x=e.offsetX-50,_y=e.offsetY-50,
+            _w=100,_h=100,_s=80,o=8,_el=n.nextElementSibling;
+            if(!_el){
+                _el=_arr[0];
+                for(let i=1;i<_arr.length;i++){
+                    _arr[i].style.display="none";
+                }
+            }
+            _el.style.filter="url('#f')";
+            _el.style.display="block";
+            requestAnimationFrame(_fn);
+            function _fn(){
+                if(_s<=0){
+                    _el.style.filter="none";
+                    _el.style.clipPath='none';
+                    return;
+                }
+                if(o>3.5){
+                    o=8*(_s/80);
+                }
+                requestAnimationFrame(_fn);
+                _feI.setAttribute('width',_w=_w+o);
+                _feI.setAttribute('height',_h=_h+o);
+                _feI.setAttribute('x',_x=_x-o/2);
+                _feI.setAttribute('y',_y=_y-o/2);
+                _feD.setAttribute('scale',_s=_s-0.4);
+                _el.style.clipPath=`circle(${_w/2}px at ${e.offsetX}px ${e.offsetY}px)`;
+            }
+        });
+    }
+    let _arr=document.getElementsByClassName('oDiv');
+    [..._arr].forEach(function(e){
+        rippleAnim(e);
+    })
+</script>
+</html> 
