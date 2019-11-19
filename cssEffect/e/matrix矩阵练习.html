@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>matrix矩阵练习</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <style>
+        section{
+            margin: 20px auto;
+            width: -webkit-fit-content;
+            width: fit-content;
+        }
+        .oDiv > div{
+            margin: 20px;
+            display: inline-block;
+            width: 200px;
+            height: 200px;
+            background-color: #22e428;
+            vertical-align: top;
+        }
+        .tran > div:not([class]){
+            transform: translate(20px,20px);
+        }
+        .tran > div[class]{
+            transform: matrix(1,0,0,1,20,20);
+        }
+        .scale > div:not([class]) {
+            transform: scale(1.2);
+        }
+        .scale > div[class]{
+            transform: matrix(1.2,0,0,1.2,0,0);
+        }
+        .skew > div:not([class]){
+            transform: skew(30deg);
+        }
+        .skew > div[class]{
+            transform: matrix(1,0,0.577,1,0,0);
+        }
+        .rotate > div:not([class]){
+            transform: rotate(30deg);
+        }
+        .rotate > div[class]{
+            transform: matrix(0.866,0.499,-0.499,0.866,0,0);
+        }
+        .comp > div:not([class]){
+            transform: scale(0.8) rotate(30deg) skew(10deg);
+        }
+        .comp > div[class]{
+            transform: matrix(0.69282, 0.4, -0.277837, 0.763351, 0, 0);
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <p>位移：</p>
+        <div class="oDiv tran">
+            <div>
+                普通<br/>
+                transform: translate(20px,20px);
+            </div>
+            <div class="matrix">
+                矩阵<br/>
+                transform: matrix(1,0,0,1,20,20);
+            </div>
+        </div>
+    </section>
+    <section>
+        <p>缩放：</p>
+        <div class="oDiv scale">
+            <div>
+                普通<br/>
+                transform: scale(1.2);
+            </div>
+            <div class="matrix">
+                矩阵<br/>
+                transform: matrix(1.2,0,0,1.2,0,0);
+            </div>
+        </div>
+    </section>
+    <section>
+        <p>斜切：matrix(1,tan(θy),tan(θx),1,0,0);</p>
+        <div class="oDiv skew">
+            <div>
+                普通<br/>
+                transform: skew(30deg);
+            </div>
+            <div class="matrix">
+                矩阵<br/>
+                transform: matrix(1,0,0.577,1,0,0);
+            </div>
+        </div>
+    </section>
+    <section>
+        <p>旋转：cosθ,sinθ,-sinθ,cosθ</p>
+        <div class="oDiv rotate">
+            <div>
+                普通<br/>
+                transform: rotate(30deg);
+            </div>
+            <div class="matrix">
+                矩阵<br/>
+                transform: matrix(0.866,0.499,-0.499,0.866,0,0);
+            </div>
+        </div>
+    </section>
+    <section>
+        <p>综合：</p>
+        <div class="oDiv comp">
+            <div>
+                普通<br/>
+                transform: scale(0.8) rotate(30deg) skew(10deg);
+            </div>
+            <div class="matrix">
+                矩阵<br/>
+                transform: matrix(0.69282, 0.4, -0.277837, 0.763351, 0, 0);;
+            </div>
+        </div>
+    </section>
+    <!-- <p>   错的，后面在研究
+        旋转和缩放结合的计算公式是：<br/>
+        matrix(cosθ*缩放比率,sinθ*缩放比率,-sinθ*缩放比率,cosθ*缩放比率,0,0);<br/>
+        旋转、缩放、斜切结合的计算公式是：<br/>
+        matrix(cosθ*缩放比率,(sinθ+tan(θy))*缩放比率,(-sinθ+tan(θx),cosθ*缩放比率)*缩放比率,0,0);<br/>
+        (tan(θy)是y轴斜切，tan(θx)是x轴斜切);
+    </p> -->
+</body>
+<script>
+    
+</script>
+</html>

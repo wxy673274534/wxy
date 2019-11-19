@@ -1,0 +1,122 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>matrix转换工具</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <style>
+        fieldset{
+            margin: 10px 0;
+            font-family: Consolas, Monaco, monospace;
+        }
+        fieldset input{
+            margin: 5px 0;
+        }
+        button{
+            display: block;
+            margin: 0 auto;
+        }
+        .copy{
+            display: none;
+        }
+        textarea{
+            margin-top: 10px;
+            width: 100%;
+            height: 70px;
+            border: none;
+            outline: none;
+            resize: none;
+        }
+        .oDiv{
+            display: inline-block;
+            vertical-align: top;
+        }
+        .oDiv:first-of-type{
+            width: 40%;
+        }
+        .oDiv:last-of-type{
+            width: 59%;
+        }
+        .oDiv:last-of-type div{
+            margin: 80px 20px 20px;
+            display: inline-block;
+            width: 200px;
+            height: 200px;
+            background-color: #22e428;
+            vertical-align: top;
+        }
+    </style>
+</head>
+<body>
+    <div class="oDiv">
+        <fieldset class="tran">
+            <legend>位移（translate）</legend>
+            X轴：<input type="number" /><br/>
+            y轴：<input type="number" />
+        </fieldset>
+        <fieldset class="scale">
+            <legend>缩放（scale）</legend>
+            X轴：<input type="number" /><br/>
+            y轴：<input type="number" />
+        </fieldset>
+        <fieldset class="skew">
+            <legend>斜切（skew）</legend>
+            X轴：<input type="number" /><br/>
+            y轴：<input type="number" />
+        </fieldset>
+        <fieldset class="rotate">
+            <legend>旋转（rotate）</legend>
+            角度：<input type="number" /><br/>
+        </fieldset>
+        <button class="but">开始转换</button>
+        <div>
+            <textarea readonly></textarea>
+            <button class="copy">复制</button>
+        </div>
+    </div>
+    <div class="oDiv">
+        <div class="ordinary">普通写法</div>
+        <div class="matrix">矩阵写法</div>
+    </div>
+</body>
+<script>
+    (function(){
+        let tranArr=document.querySelectorAll('.tran input'),
+            scaleArr=document.querySelectorAll('.scale input'),
+            skewArr=document.querySelectorAll('.skew input'),
+            rotate=document.querySelectorAll('.rotate input')[0],
+            copyText=document.getElementsByTagName('textarea')[0],
+            copyBut=document.getElementsByClassName('copy')[0],
+            _r=Math.PI/180,cosinR,sinR;
+        document.getElementsByClassName('but')[0].onclick=function(){
+            // 除了缩放（scale），可以不管小数，影响不大
+            let _v=~~rotate.value,
+                _sX=Number(scaleArr[0].value) || 1,
+                _sY=Number(scaleArr[1].value) || 1,
+                _skewX=~~skewArr[0].value,
+                _skewY=~~skewArr[1].value,
+                _tX=~~tranArr[0].value,
+                _tY=~~tranArr[1].value;
+            cosinR=rotate ? _fn('cos',_v):0;
+            sinR=rotate ? _fn('sin',_v):0;
+            document.getElementsByClassName('matrix')[0].style.transform=copyText.value=`matrix(${cosinR*_sX},${sinR*_sY + _fn('tan',_skewY)*_sY},${_fn('tan',_skewX)*_sX-sinR *_sX},${cosinR*_sY },${_tX},${_tY})`;
+            document.getElementsByClassName('ordinary')[0].style.transform=`translate(${_tX}px,${_tY}px) scale(${_sX},${_sY}) skew(${_skewX}deg,${_skewY}deg) rotate(${_v}deg)`;
+
+            copyBut.style.display="block";
+        };
+        copyBut.onclick=function(){
+            //选中input框的内容
+            copyText.select();
+            // 执行浏览器复制命令
+            document.execCommand("Copy");
+        };
+
+        function _fn(type,value){
+            return parseFloat(Math[type](value*_r).toFixed(15));
+        }
+    })();
+</script>
+</html> -->

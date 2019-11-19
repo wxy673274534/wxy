@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <style>
+        .oDiv{
+            position: relative;
+            width: fit-content;
+        }
+        .oDiv label{
+            position: absolute;
+            background-color: #fff;
+            top: 10px;
+            left: 4px;
+            line-height: 1;
+            font-size: 14px;
+            color: rgb(117, 117, 117);
+            transform: scale(1) translateY(0);
+            transition: transform .5s;
+        }
+        .oDiv input{
+            padding: 0 0 0 4px;
+            margin: 0;
+            height: 30px;
+            line-height: 30px;
+        }
+        .oDiv input::-webkit-input-placeholder{
+            opacity: 0;
+        }
+        .oDiv input:focus ~ label{
+            transform: scale(0.7) translateY(-25px);
+        }
+    </style>
+</head>
+<body>
+    <div class="oDiv">
+        <input placeholder="未填写" id="myI" />
+        <label for="myI">未填写</label>
+    </div>
+</body>
+<script>
+    
+</script>
+</html> 

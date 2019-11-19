@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>纯css实现loading</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <style>
+        .oDiv{
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 100px;
+            overflow: hidden;
+            -webkit-mask: radial-gradient(transparent 12px, #4198e8 13px);
+            mask: radial-gradient(transparent 12px, #4198e8 13px);
+            animation: load 1.5s linear infinite;
+        }
+        .oDiv > div{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .r{
+            clip-path: polygon(50% 0,100% 0,100% 100%,50% 100%);
+            background-image: linear-gradient(to bottom,rgba(65,152,232,1),rgba(65,152,232,.5));
+        }
+        .l{
+            clip-path: polygon(0 0,50% 0,50% 100%,0 100%);
+            background-image: linear-gradient(to top,rgba(65,152,232,.5),rgba(65,152,232,.1));
+        }
+        @keyframes load{
+            0%{
+                transform: rotate(0);
+            }
+            100%{
+                transform: rotate(-360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="oDiv">
+        <div class="r"></div>
+        <div class="l"></div>
+    </div>
+</body>
+<script>
+    
+</script>
+</html>

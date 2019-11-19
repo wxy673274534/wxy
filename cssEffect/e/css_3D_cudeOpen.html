@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>css立方体展开</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <style>
+        .oDiv{
+            position: relative;
+            margin: 100px auto;
+            width: 200px;
+            height: 200px;
+            perspective: 1200px;
+        }
+        .container{
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            transform-style: preserve-3d;
+            transform-origin: 50% 50% 100px;
+            animation: rotate 4s 12s linear infinite;
+        }
+        .box,.box div{
+            box-sizing: border-box;
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
+            animation-duration: 2s;
+            background-color: currentColor;
+        }
+        .box > div{
+            border: 1px solid #333;
+        }
+        .box{
+            transform-style: preserve-3d;
+            transform-origin: 0 100%;
+            transform: scaleX(0);
+            color: rgba(255,0,0,.3);
+            animation-name: open_box;
+            animation-delay: 0s;
+        }
+        .top{
+            transform-origin: 50% 0;
+            color: rgba(255,128,255,.3);
+            animation-name: open_top;
+            animation-delay: 8s;
+            transform-style: preserve-3d;
+        }
+        .bottom{
+            transform-origin: 50% 100%;
+            color: rgba(255,255,0,.3);
+            animation-name: open_bottom;
+            animation-delay: 6s;
+        }
+        .left{
+            transform-origin: 0 50%;
+            color: rgba(0,255,255,.3);
+            animation-name: open_left;
+            animation-delay: 2s;
+        }
+        .right{
+            transform-origin: 100% 50%;
+            color: rgba(0,0,255,.3);
+            animation-name: open_right;
+            animation-delay: 4s;
+        }
+        .behind{
+            transform-origin: 50% 100%;
+            color: rgba(128,0,255,.3);
+            animation-name: open_behind;
+            animation-delay: 10s;
+        }
+
+        @keyframes open_box{
+            0%{
+                transform: scaleX(0);
+            }
+            50%{
+                transform: scaleX(1);
+            }
+            100%{
+                transform: rotateX(-90deg);
+            }
+        }
+        @keyframes open_top{
+            0%{
+                transform: rotateX(0deg);
+            }
+            100%{
+                transform: rotateX(-90deg);
+            }
+        }
+        @keyframes open_bottom{
+            0%{
+                transform: rotateX(0deg);
+            }
+            100%{
+                transform: rotateX(90deg);
+            }
+        }
+        @keyframes open_left{
+            0%{
+                transform: rotateY(0deg);
+            }
+            100%{
+                transform: rotateY(90deg);
+            }
+        }
+        @keyframes open_right{
+            0%{
+                transform: rotateY(0deg);
+            }
+            100%{
+                transform: rotateY(-90deg);
+            }
+        }
+        @keyframes open_behind{
+            0%{
+                transform: rotateX(0);
+            }
+            100%{
+                transform: rotateX(-90deg);
+            }
+        }
+        @keyframes rotate{
+            0%{
+                transform: rotate3d(1,1,1,0deg);
+            }
+            100%{
+                transform: rotate3d(1,1,1,360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="oDiv">
+        <div class="container">
+            <!-- 正面 -->
+            <div class="box">
+                <!-- 上 -->
+                <div class="top">
+                    <!-- 后面 -->
+                    <div class="behind"></div>
+                </div>
+                <!-- 下 -->
+                <div class="bottom"></div>
+                <!-- 左 -->
+                <div class="left"></div>
+                <!-- 右 -->
+                <div class="right"></div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    
+</script>
+</html>

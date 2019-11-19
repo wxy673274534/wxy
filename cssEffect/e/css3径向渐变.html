@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>径向渐变练习</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <style>
+        div{
+            width: 200px;
+            height: 100px;
+            border: 1px solid #eee;
+        }
+        .a{
+            background-image: radial-gradient(red,yellow);
+        }
+        .b_1{
+            background-image: radial-gradient(circle,red,yellow);
+        }
+        .b_2{
+            background-image: radial-gradient(80px circle,red,yellow);
+        }
+        .c_1{
+            background-image: radial-gradient(circle at 20px 20px,red,yellow);
+        }
+        .c_2{
+            background-image: radial-gradient(at 20px 20px,red,yellow);
+        }
+        .suspend{
+            background-image: radial-gradient(farthest-corner circle,red,yellow);
+        }
+        .many_1{
+            background: radial-gradient(closest-side circle, yellow, orange 33.33%, red 66.666%, white);
+        }
+        .many_2{
+            background: radial-gradient(closest-side circle, yellow, orange 10%, red 66.666%, white);
+        }
+        .e_1{
+            background-image: radial-gradient(ellipse,red,yellow);
+        }
+        .e_2{
+            background-image: radial-gradient(20px 100px ellipse,red,yellow);
+        }
+    </style>
+</head>
+<body>
+    <p>只加颜色，渐变背景是一个宽高比和元素相同的椭圆</p>
+    <div class="a"></div>
+    <p>circle，将渐变背景变为圆形,可以指定半径</p>
+    <div class="b_1"></div>
+    <div class="b_2"></div>
+    <p>at 可以改变渐变背景的圆心位置（可以百分比），不加circle也可以</p>
+    <div class="c_1"></div>
+    <div class="c_2"></div>
+    <p>指定渐变终止点位置（不能和半径同时去现）</p>
+    <ul>
+        <li>
+            <label>closest-side: <input type="radio" name="suspend" value="closest-side"></label>
+            <p>渐变中心距离容器最近的边作为终止位置。</p>
+        </li>
+        <li>
+            <label>closest-corner: <input type="radio" name="suspend" value="closest-corner"></label>
+            <p>渐变中心距离容器最近的角作为终止位置。</p>
+        </li>
+        <li>
+            <label>farthest-side: <input type="radio" name="suspend" value="farthest-side"></label>
+            <p>渐变中心距离容器最远的边作为终止位置。</p>
+        </li>
+        <li>
+            <label>farthest-corner: <input type="radio" name="suspend" value="farthest-corner" checked></label>
+            <p>渐变中心距离容器最远的角作为终止位置。(默认)</p>
+        </li>
+    </ul>
+    <div class="suspend"></div>
+    <p>如果指定多个颜色，但未指定具体断点的位置，则这些颜色会均匀分配0%~100%的渐变区域</p>
+    <div class="many_1">默认</div>
+    <div class="many_2"></div>
+    <p>ellipse，将渐变背景变为椭圆,需要同时指定横轴和纵轴的长度</p>
+    <div class="e_1"></div>
+    <div class="e_2"></div>
+</body>
+<script>
+    (function(){
+        let _r1=document.getElementsByClassName('suspend')[0],
+            input1=document.getElementsByName('suspend');
+        input1.forEach((item)=>{
+            item.onchange=function(){
+                _r1.style.backgroundImage=`radial-gradient(${this.value} circle,red,yellow)`;
+            }
+        })
+    })();
+</script>
+</html>

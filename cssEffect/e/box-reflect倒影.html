@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>box-reflect倒影练习</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <style>
+        .oDiv{
+            display: inline-block;
+            margin: 10px;
+            width: 100px;
+            height: 100px;
+            background-color: #22e482;
+            /* -webkit-box-reflect: above  10px; */
+            -webkit-box-reflect: below 10px;
+            /* -webkit-box-reflect: right  10px;
+            -webkit-box-reflect: left 10px; */
+            color: red;
+            vertical-align: top;
+        }
+        .manyStyle{
+            border: 4px solid currentColor;
+            box-shadow: 0 0 10px 0 currentColor,0 0 10px 0 currentColor inset;
+            outline: 2px solid blue;
+            background-image: linear-gradient( #22e482,blue);
+        }
+        .css3NewStyle{
+            filter: brightness(200%);
+            transform: skewX(10deg) rotate(30deg);
+        }
+        .anim{
+            animation: anim 3s infinite;
+        }
+        p{
+            margin-top: 150px;
+        }
+        @keyframes anim{
+            0%{
+                transform: translateX(0) skewX(-15deg);
+            }
+            50%{
+                transform: translateX(100px) skewX(15deg);
+            }
+            100%{
+                transform: translateX(0) skewX(-15deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="oDiv">
+        普通的元素可以用box-reflect么
+    </div>
+    <div class="oDiv manyStyle">
+        边框、阴影、轮廓、渐变背景能被倒影继承么
+    </div>
+    <div class="oDiv css3NewStyle">
+        那filter、transform等css3属性呢
+    </div>
+    <div class="oDiv anim">
+        那动画呢
+    </div>
+    <p>
+        看来transform不是完全倒影的，skew时，倒影和本体skew的方向一样<br/>
+        box-reflect现阶段要加-webkit-<br/>
+        当设置了遮罩图片后（第三个参数后）倒影的轮廓、外阴影会失效<br/>
+        当图片应用于倒影遮罩的时候，这个图片自身也会被（因倒影）而翻转。<br/>
+        参数：
+        <pre>
+            方位
+            可以是下面4个值中的1个，above,below,left,right，分别表示上下左右。如果不是使用类似inherit等全局关键字，则此方位值是不能缺省的。
+            偏移大小
+            倒影和原始元素偏移距离。可以是数值，也可以是百分比值。如果是百分比值，则百分比大小是相对于元素自身尺寸计算的。和transform中translate的百分比计算是一致的。
+            遮罩图片
+            对元素倒影的遮罩控制。语法类似于background-image。
+        </pre>
+    </p>
+</body>
+<script>
+    
+</script>
+</html>

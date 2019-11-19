@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>details与summary标签交互效果实验</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <style>
+        ::-webkit-details-marker{
+            display: none;
+        }
+        ::-moz-details-marker{
+            font-size: 0;
+            float: left;
+        }
+        dd{
+            margin: 0;
+        }
+        details{
+            user-select: none;
+        }
+        summary{
+            outline: none;
+        }
+        .more{
+            display: none;
+        }
+        [open] .more{
+            display: block;
+        }
+        .more + a{
+            color: -webkit-link;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .more + a:hover{
+            text-decoration: underline;
+        }
+        [open] .more + a{
+            font-size: 0;
+        }
+        [open] .more + a::after{
+            content: '收起';
+            font-size: 14px;
+        }
+
+        
+        .dropDownList{
+            position: relative;
+        }
+        ul{
+            position: absolute;
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+            background-color: #fff;
+            box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
+        }
+        .dropDownList a{
+            color: #333;
+            text-decoration: none;
+        }
+        .dropDownList a:hover{
+            text-decoration: underline;
+        }
+        .dropDownList summary{
+            padding: 0 10px;
+            display: inline-block;
+            transition: background .3s,color .3s;
+        }
+        .dropDownList[open] summary,.dropDownList summary:hover{
+            background-color: #999;
+            color: #fff;
+        }
+
+        .foldList + dl{
+            margin: 0;
+            max-height: 0px;
+            transition: max-height .3s;
+            overflow: hidden;
+        }
+        .foldList[open] + dl{
+            max-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <p>1、更多与收起</p>
+    <details>
+        <summary>
+            <p>纯css实现更多与收起功能</p>
+            <div class="more">
+                主要是对选择器的理解，和对“summary”、“details”标签特性的运用
+            </div>
+            <a>更多</a>
+        </summary>
+    </details>
+    <p>2、下拉列表</p>
+    <details class="dropDownList">
+        <summary>我的</summary>
+        <ul>
+            <li><a href="">我的消息</a></li>
+            <li><a href="">我的主页</a></li>
+            <li><a href="">我的积分</a></li>
+            <li><a href="">退出登录</a></li>
+        </ul>
+    </details>
+    <p>3、折叠列表</p>
+    <details class="foldList">
+        <summary>折叠列表</summary>
+    </details>
+    <dl>
+        <dd>列表项1</dd>
+        <dd>列表项2</dd>
+        <dd>列表项3</dd>
+        <dd>列表项4</dd>
+    </dl>
+
+    <p>兼容性判断  
+        <pre><code>var isSupportDetails = 'open' in document.createElement('details');</code></pre>
+    </p>
+</body>
+<script>
+    
+</script>
+</html>

@@ -32,7 +32,7 @@
         };
         _bezierInfo.nextElementSibling.onclick=function(){
             window.getSelection().selectAllChildren(_bezierInfo);
-            document.execCommand ("Copy");
+            document.execCommand("Copy");
         }
         _initControl();
         _painting();

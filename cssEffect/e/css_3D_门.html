@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>css_3D_门</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <style>
+        .persp{
+            margin: 40px auto;
+            position: relative;
+            perspective: 1200px;
+            width: max-content;
+        }
+        .door{
+            box-sizing: border-box;
+            position: relative;
+            width: 200px;
+            height: 320px;
+            background-color: #2284e4;
+            transform-style: preserve-3d;
+            color: #000;
+            transform-origin: 0 50%;
+            transition: transform 2s cubic-bezier(0.33,0.45,0.3,0.93);
+            will-change: transform;
+        }
+        .door > div{
+            box-sizing: border-box;
+            position: absolute;
+            border: 2px solid;
+            background-color: #2284e4;
+        }
+        .door_t{
+            width: 100%;
+            height: 7px;
+            top: -7px;
+            transform-origin: 50% 100%;
+            transform: rotateX(90deg);
+            border-bottom: none;
+        }
+        .door_r{
+            width: 7px;
+            height: 100%;
+            right: -7px;
+            top: 0;
+            transform-origin: 0 50%;
+            transform: rotateY(90deg);
+            border-left: none;
+        }
+        .door .door_b{
+            transform: translateZ(-7px);
+            background-color: #2b567f;
+        }
+        .door .door_b,.door .door_f{
+            width: 100%;
+            height: 100%;
+        }
+        .door .light{
+            border: none;
+            width: 200%;
+            height: 100%;
+            background-color: #fbfad0;
+            transform: translateZ(-7px);
+            opacity: .9;
+            /* z-index: -1; */
+            transition: opacity 2s;
+        }
+        .inDoor{
+            box-sizing: content-box;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 10px;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="persp">
+        <div class="door">
+            <!-- 光 -->
+            <div class="light" hidden></div>
+            <!-- 上面 -->
+            <div class="door_t"></div>
+            <!-- 正面 -->
+            <div class="door_f"></div>
+            <!-- 右面 -->
+            <div class="door_r"></div>
+            <!-- 后面 -->
+            <div class="door_b"></div>
+        </div>
+        <div class="inDoor">
+            <div>门后的东西</div>
+        </div>
+    </div>
+</body>
+<script>
+    !function(){
+        let _e=document.getElementsByClassName('door_f')[0],
+            _light=document.querySelectorAll('.door .light')[0];
+        _e.onclick=function(){
+            this.parentElement.style.transform='rotateY(-100deg)';
+            _light.removeAttribute('hidden');
+            _light.style.opacity=0;
+        }
+    }();
+</script>
+</html>

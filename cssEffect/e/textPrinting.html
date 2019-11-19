@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>文本打印效果</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <style>
+        body{
+            font-size: 18px;
+        }
+        p{
+            padding-right: 3px;
+            position: relative;
+            width: 28.5em;
+            height: 22px;
+            font-family: Consolas, Monaco, monospace;
+            word-break: break-all;
+            overflow: hidden;
+            animation: printing 10s steps(57);
+        }
+        p::after{
+            content: " ";
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background-color: #666;
+            animation: twinkle 1s step-end infinite;
+        }
+        @keyframes twinkle{
+            0%,100%{
+                visibility: hidden;
+            }
+            50%{
+                visibility: visible;
+            }
+        }
+        @keyframes printing{
+            0%{
+                width: 0em;
+            }
+            100%{
+                width: 28.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <p>css实现文本打印效果，主要用了css逐步动画steps，等宽字体</p>
+</body>
+<script>
+    document.getElementsByTagName('p')[0].onclick=function(e){
+        console.log(e.target.closest)
+    }
+</script>
+</html>
