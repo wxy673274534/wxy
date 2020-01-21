@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <style>
+        button:active + .color{
+            animation: none;
+        }
+        .color{
+            color: red;
+            background-color: blue;
+            animation: color 1s linear forwards;
+        }
+        @keyframes color{
+            100%{
+                color: blue;
+                background-color: red;
+            }
+        }
+    </style>
+</head>
+    
+<body>
+    <button>重置</button>
+    <div class="color"></div>
+</body>
+<script>
+    /**
+    *   1、在body元素中插入300*150的div
+    *   2、通过设置style创建渐变
+    *   3、用js实现渐变背景动画
+    */
+    (function(){
+        // 第一题
+        let oDiv=document.createElement('div');
+        oDiv.style.cssText='width: 300px;height: 150px;';
+        document.body.appendChild(oDiv);
+        // 第二题
+        oDiv.style.backgroundImage='linear-gradient(to right bottom,red,blue)';
+        // 第三题
+        /**
+         * 本来打算用rgba实时计算的
+         * 但是在别人的答案下面发现了更的方式
+         * 张鑫旭介绍过这种方式：
+         * https://www.zhangxinxu.com/wordpress/2018/07/canvas-color-transition/
+         */
+        let _colorDiv=document.querySelector(".color"),
+            _boole=true;
+
+        _colorDiv.onanimationstart=function(){
+            _boole=true;
+        }
+        _colorDiv.onanimationend=function(){
+            _boole=false;
+        }
+        _fn();
+        function _fn(){
+            let _s=getS(_colorDiv);
+            oDiv.style.backgroundImage='linear-gradient(to right bottom,'+_s.color+','+_s.backgroundColor+')';
+            if(_boole){
+                requestAnimationFrame(_fn);
+            }
+        }
+        function getS(e){
+            if(window.getComputedStyle){
+                return window.getComputedStyle(e,null);
+            }else {
+                return e.currentStyle;
+            }
+        }
+    })();
+</script>
+</html>

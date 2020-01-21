@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>DOM小测31</title>
+    <link rel="stylesheet" href="./css/common.css">
+    <style>
+        :root {}
+    </style>
+</head>
+
+<body>
+    <script src="./js/sprite.js"></script>
+    <div id="pageStart" class="page page-start">
+        <div class="page-body">
+            <div class="content">内容</div>
+        </div>
+        <div>其他内容</div>
+    </div>
+    <div class="hr"></div>
+</body>
+<script>
+    /**
+    *  填空题
+    *  1、document[][1].type="text/css";
+    *  2、document[][].replace(/\s/g,'')="DOM 小测 31 :root {}";
+    *  3、document.querySelector("div:_____(1)").id="pageStart";
+    *  4、document.querySelector("div:_____").className="hr";
+    *  5、pageStart.querySelectorAll("div div").length=_____;
+    *  6、pageStart.querySelectorAll(":_____div div").length=1;
+    *  7、document.querySelectorAll("div[class____='page']").length=1;
+    *  8、document.querySelectorAll("div:_____([class])").length=1;
+    */
+
+    // 第一题
+    console.log('第一题',document['styleSheets'][1].type);
+    // 第二题
+    console.log('第二题',document['head']['textContent'].replace(/\s/g,''));
+    console.log('第二题',document['head']['innerText'].replace(/\s/g,''));
+    // 第三题
+    console.log('第三题',document.querySelector("div:nth-of-type(1)").id);
+    // 第四题
+    console.log('第四题',document.querySelector("div:last-child").className);
+    console.log('第四题',document.querySelector("div:empty").className);
+    // 第五题
+    console.log('第五题',pageStart.querySelectorAll("div div").length===3);
+    // 第六题
+    console.log('第六题',pageStart.querySelectorAll(":nth-last-of-type(2) div div").length);
+    console.log('第六题',pageStart.querySelectorAll(":scope div div").length);
+    // 第七题
+    console.log('第七题',document.querySelectorAll("div[class |='page']").length);
+    // 第八题
+    console.log('第八题',document.querySelectorAll("div:not([class])").length);
+</script>
+</html>

@@ -28,7 +28,16 @@
             width: 2px;
             height: 100%;
             background-color: #666;
-            animation: twinkle 1s step-end infinite;
+            animation: twinkle 1s step-end 10;
+            visibility: hidden;
+        }
+        p:last-of-type{
+            animation-delay: 10s;
+            width: 0em;
+            animation-fill-mode: forwards;
+        }
+        p:last-of-type::after{
+            animation-delay: 10s;
         }
         @keyframes twinkle{
             0%,100%{
@@ -49,6 +58,7 @@
     </style>
 </head>
 <body>
+    <p>css实现文本打印效果，主要用了css逐步动画steps，等宽字体</p>
     <p>css实现文本打印效果，主要用了css逐步动画steps，等宽字体</p>
 </body>
 <script>

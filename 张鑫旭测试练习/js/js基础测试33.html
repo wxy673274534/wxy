@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+</head>
+
+<body>
+</body>
+<script>
+    /**
+    *   1、0.6.toFixed(0)返回的结果
+    *   2、1.6.toFixed(0)返回的结果
+    *   3、0.035.toFixed(2)返回的结果
+    *   4、0.045.toFixed(2)返回的结果
+    *   5、重写toFixed()方法，使： （1）所有浏览器返回结果一致；（2）符合四舍五入；
+    *   6、使数字字符串也支持toFixed方法，例如'1.23'.toFixed(1)->1.2
+    */
+    (function(){
+        // 第一题
+       console.log(0.6.toFixed(0)==1);
+        // 第二题
+       console.log(1.6.toFixed(0)==2);
+        // 第三题
+       console.log(0.035.toFixed(2)==0.04);
+        // 第四题
+       console.log(0.045.toFixed(2)==0.05);
+        // 第五题
+        Number.prototype.toFixed=function(n){
+            let _arr=(this+'').split('.');
+            let _num=Number(_arr[0]+'.'+_arr[1].slice(0,n));
+            if(_arr[1][n]>4){
+                _num = _num + 1/Math.pow(10,n);
+            }
+            return _num+'';
+        }
+        // 第六题
+        String.prototype.toFixed=function(n){
+            let _num=parseFloat(this);
+            if(_num !== _num){
+                return;
+            }
+            return _num.toFixed(n);
+        }
+    })();
+</script>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>css各种图形的实现</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <style>
+        .fake_E::before,.fake_E::after{
+            content: ' ';
+            display: inline-block;
+            color: red;
+        }
+
+
+        .oDiv1{
+            width: 20px;
+            height: 20px;
+        }
+        .oDiv1::before{
+            width: 20px;
+            height: 20px;
+            border-top: 5px solid;
+            border-top-left-radius: 100%;
+        }
+        .oDiv1::after{
+            display: block;
+            margin: -34px 0 0 20px;
+            border-style: solid;
+            border-width: 8px 0 8px 6px;
+            border-color: transparent transparent transparent red;
+        }
+
+
+        .oDiv2{
+            width: 50px;
+            border-style: solid;
+            border-width: 0 10px 50px 10px;
+            border-color: transparent transparent red;
+        }
+        
+
+        .oDiv3{
+            margin-top: 15px;
+            position: relative;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 50px 25px 0 25px;
+            border-color: red transparent transparent;
+        }
+        .oDiv3::before{
+            position: absolute;
+            top: -65px;
+            left: -25px;
+            border-style: solid;
+            border-width: 0 25px 50px 25px;
+            border-color: transparent transparent red;
+        }
+
+
+        .oDiv4{
+            position: relative;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 50px 30px 50px;
+            border-color: transparent transparent red;
+        }
+        .oDiv4::before{
+            position: absolute;
+            left: -50px;
+            border-style: solid;
+            border-width: 0 50px 30px 50px;
+            border-color: transparent transparent red;
+            transform: rotate(64deg);
+        }
+        .oDiv4::after{
+            position: absolute;
+            top: -30px;
+            left: 3px;
+            border-style: solid;
+            border-width: 0 12px 40px 12px;
+            border-color: transparent transparent red;
+            transform: rotate(30deg);
+        }
+    </style>
+</head>
+<body>
+    <fieldset>
+        <legend>弧形尾箭头</legend>
+        <div class="fake_E oDiv1"></div>
+    </fieldset>
+    <fieldset>
+        <legend>梯形</legend>
+        <div class="oDiv2"></div>
+    </fieldset>
+    <fieldset>
+        <legend>六角星</legend>
+        <div class="fake_E oDiv3"></div>
+    </fieldset>
+    <fieldset>
+        <legend>五角星</legend>
+        <div class="fake_E oDiv4"></div>
+    </fieldset>
+</body>
+<script>
+    
+</script>
+</html>

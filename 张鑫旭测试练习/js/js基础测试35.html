@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <style>
+        
+    </style>
+</head>
+
+<body>
+    
+</body>
+<script>
+    /**
+    * 1、encodeURI和encodeURIComponent的区别
+    * 2、把object1转变成userid=123&username=%E7%8E...这种形式
+    * 3、获取当前URL地址栏中的第一个？后面的查询内容（包括问号）
+    * 4、把？后面的查询字符串转换成object1这样的键值对对象格式
+    * 5、如果键有重复，则值以数组呈现
+    */
+    (function(){
+        const object1={
+            userid: 123,
+            username: '王二',
+            tel: '1234567890',
+        };
+        // 第一题
+        
+        // 第二题
+        let _arr=[];
+        Object.keys(object1).forEach((item)=>{
+            _arr.push(`item=${encodeURIComponent(object1[item])}`);
+        })
+        let _str=_arr.join('&');
+        console.log(_str);
+
+        // 第三题
+        let _str2=location.search.split('&')[0];
+
+        // 第四题、第五题
+        let _sea=location.search,
+            _obj={};
+        if(~_sea.indexOf('?')){
+            _sea=_sea.slice(1);
+            _sea.split('&').forEach((item)=>{
+                let _o=item.split('=');
+                if(_obj[_o[0]]){
+                    _obj[_o[0]]=[_obj[_o[0]],_o[1]];
+                }else{
+                    _obj[_o[0]]=_o[1];
+                }
+            })
+        }
+        console.log(_obj);
+    })();
+</script>
+
+</html>

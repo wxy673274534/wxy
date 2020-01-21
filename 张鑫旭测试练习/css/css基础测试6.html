@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <style>
+        button{
+            border: none;
+            padding: 0;
+        }
+        .audioControls{
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            height: 54px;
+            min-width: 280px;
+            background-color: rgb(241, 243, 244);
+            border-radius: 54px;
+            color: #000;
+        }
+        .audioControls button{
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: transparent;
+            transition: background .3s;
+            font-size: 0;
+        }
+        .audioControls button:hover{
+            background-color: rgba(32, 33, 36, 0.06);
+        }
+        .pause span{
+            display: inline-block;
+        }
+        .pause span:first-of-type{
+            width: 0;
+            height: 0;
+            border-top: 7px solid transparent;
+            border-bottom: 7px solid transparent;
+            border-left: 11px solid;
+            transform: translateX(1px);
+        }
+        .audioTime{
+            font-size: 14px;
+            opacity: .87;
+        }
+        .playTime{
+            margin-left: 5px;
+        }
+        .totalTime{
+            flex-shrink: 0;
+            margin-left: 4px;
+        }
+        .audioControls input[type='range']{
+            -webkit-appearance: none;
+            flex-grow: 1;
+            margin: 0 16px;
+            height: 4px;
+            min-width: 0;
+            border-radius: 4px;
+            color: #000;
+            background-color: #000;
+            mix-blend-mode: multiply;
+        }
+        .audioControls input[type='range']::-webkit-slider-runnable-track{
+            overflow: hidden;
+        }
+        .audioControls input[type='range']::-webkit-slider-thumb{
+            -webkit-appearance: none;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: currentColor;
+            box-shadow: 100vw 0 0 100vw rgba(255,255,255,.7);
+        }
+        .voiceBut::before,.voiceBut::after{
+            content: ' ';
+            display: inline-block;
+        }
+        .voiceBut::before{
+            width: 6px;
+            height: 6px;
+            border-right: 5px solid;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            box-shadow: inset 0 0 0 6px currentColor;
+        }
+        .voiceBut::after{
+            margin-left: -5.5px;
+            padding: 2px;
+            width: 6px;
+            height: 8px;
+            border: 2px solid;
+            background-color: currentColor;
+            background-clip: content-box;
+            border-radius: 50%;
+            -webkit-clip-path: inset(0 0 0 8px);
+            clip-path: inset(0 0 0 8px);
+        }
+        .moreBut{
+            background-image: radial-gradient(2px circle at 50% 10px,currentColor 2px,transparent),
+                            radial-gradient(2px circle at 50% 16px,currentColor 2px,transparent),
+                            radial-gradient(2px circle at 50% 22px,currentColor 2px,transparent);
+        }
+    </style>
+</head>
+
+<body>
+    <audio src="http://game.flyh5.cn/resources/game/datasystem/UGGqysAlekdVH64qLwP/15769443785dfe42fa06047.mp3" controls></audio>
+    <div class="audioControls">
+        <button class="pause">
+            <span></span>
+            <span></span>
+        </button>
+        <div class="playTime audioTime">0:00</div>
+        <div class="totalTime audioTime">/ 2:03</div>
+        <input type="range" />
+        <button class="voiceBut"></button>
+        <button class="moreBut"></button>
+    </div>
+</body>
+<script>
+    
+</script>
+
+</html>

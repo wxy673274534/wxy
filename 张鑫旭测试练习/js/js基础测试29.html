@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+</head>
+
+<body>
+</body>
+<script>
+    /**
+     *  1、判断对象的键值是否相等
+     *  2、判断数组是否相等
+     *  3、判断内容形态是否相等
+     */
+    (function(){
+        let obj1={a: 1,b: 2},
+            obj2={a: 1,b: 2};
+        console.log('判断对象是否相等',equalObject(obj1,obj2));
+        
+        let arr1=[1,3,4,5,6,7],
+            arr2=[1,3,4,5,6,7];
+
+        console.log('判断数组是否相等',equalArray(arr1,arr2));
+
+
+        function equalObject(obj1,obj2){
+            if(_type(obj1)!='object' || _type(obj2)!='object'){
+                console.error('参数不合法');
+                return false;
+            }
+            // 先获取两个对象的键，判断数量是否相等
+            let keyArr1=getKey(obj1),keyArr2=getKey(obj2);
+
+            if(keyArr1.length!=keyArr2.length){
+                return false;
+            }
+            // 判断键值是否相等
+
+            // 我原本的做法，但是看了一下别的答案，发现一些步骤多余了
+            // let arr=[],_k1,_k2;
+            // for(let i=0;i<keyArr1.length;i++){
+            //     for(let j=0;j<keyArr2.length;j++){
+            //         _k1=keyArr2[i];
+            //         _k2=keyArr2[j];
+            //         if(_k1===_k2 && obj1[_k1]===obj2[_k2]){
+            //             arr.push(1);
+            //             break;
+            //         }
+            //     }
+            // }
+            // if(arr.length!=keyArr1.length){
+            //     return false;
+            // }
+
+            // 改进后的方法
+            let _k;
+            for(let i=0;i<keyArr1.length;i++){
+                _k=keyArr1[i];
+                if(obj1[_k]!==obj2[_k]){
+                    return false;
+                }
+            }
+
+            return true;
+            
+            function getKey(obj){
+                let _arr=[];
+                for(let key in obj){
+                    _arr.push(key);
+                }
+                return _arr;
+            }
+        }
+
+        function equalArray(arr1,arr2){
+            if(_type(arr1)!='array' || _type(arr2)!='array'){
+                console.error('参数不合法');
+                return false;
+            }
+            if(arr1.length!=arr2.length){
+                return false;
+            }
+            for(let i=0;i<arr1.length;i++){
+                if(arr1[i]!==arr2[i]){
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function equal(o1,o2){
+            let _t1=_type(o1),
+                _t2=_type(o2);
+            if(!_indexOf(_t1) || !_indexOf(_t2)){
+                console.error('参数不合法');
+                return false;
+            }
+            if(_t1!==_t2){
+                return false;
+            }
+            // if(){
+                
+            // }
+
+            function _indexOf(s){
+                return ~['array','object'].indexOf(s);
+            }
+        }
+        // 类型检测
+        function _type(o) {
+            return Object.prototype.toString.call(o).match(/\w+/g)[1].toLocaleLowerCase();
+        }
+    })();
+</script>
+</html>

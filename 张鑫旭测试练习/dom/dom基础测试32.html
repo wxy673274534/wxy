@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <style>
+        /* body,html{
+            margin: 0;
+            padding: 0;
+            font-size: 0;
+        } */
+        .box{
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            background-color: gray;
+        }
+        .box.active{
+            background-color: skyblue;
+        }
+        .box:active{
+            animation: shock .35s ease-in;
+        }
+        span{
+            position: absolute;
+            border: 1px dashed #eee;
+            pointer-events: none;
+            user-select: none;
+        }
+        @keyframes shock{
+            0%{
+                transform: rotate(0deg);
+            }
+            10%,30%,50%,70%,90%{
+                transform: rotate(-5deg);
+            }
+            20%,40%,60%,80%{
+                transform: rotate(5deg);
+            }
+            100%{
+                transform: rotate(0deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    
+</body>
+<script>
+    /**
+     * 1、在body中增加20个class为box的盒子
+     * 2、鼠标或手指长按盒子元素350ms，增加类名.active；普通点击无变化；点击空白，移除所有元素的.active类名
+     * 3、鼠标或手指长按盒子元素350ms，然后滑动框选，框选范围内所有盒子元素新增类名.active
+     */
+    (function(){
+        // 第一题
+        let fragment = document.createDocumentFragment();
+        for(let i=0;i<20;i++){
+            let oDiv = document.createElement('div');
+            oDiv.className='box';
+            oDiv.addEventListener('touchstart',touchStart);
+            oDiv.addEventListener('mousedown',touchStart);
+            oDiv.addEventListener('touchmove',touchMove);
+            oDiv.addEventListener('mousemove',touchMove);
+            oDiv.addEventListener('touchend',touchEnd);
+            oDiv.addEventListener('mouseup',touchEnd);
+            oDiv.addEventListener('click',function(e){
+                e.stopPropagation();
+            });
+            fragment.appendChild(oDiv);
+        }
+        document.body.appendChild(fragment);
+        
+        let boxArr=[].slice.call(document.querySelectorAll('.box'),0),
+            boxRectArr=boxArr.map((item)=>{
+                let _r=item.getBoundingClientRect();
+                return {
+                    x: _r.left,
+                    y: _r.top,
+                    w: _r.width,
+                    h: _r.height,
+                    disX: _r.left +  _r.width,
+                    disY: _r.top +  _r.height,
+                }
+            });
+
+        document.addEventListener('click',function(){
+            if(isMobile){
+                isMobile=false;
+                return;
+            }
+            boxArr.forEach((item) => {
+                item.classList.remove('active');
+            });
+        })
+        document.addEventListener('touchmove',setSpan);
+        document.addEventListener('mousemove',setSpan);
+        document.addEventListener('touchend',removeSpan);
+        document.addEventListener('mouseup',removeSpan);
+
+        // 第二、三题
+        let latch=false,time,_span,_x,_y,isMobile=false;
+        function touchStart(e){
+            isMobile=false;
+            time=setTimeout(()=>{
+                this.classList.add('active');
+                _span=document.createElement('span');
+                document.body.appendChild(_span);
+                _x=e.pageX || e.changedTouches[0].pageX;
+                _y=e.pageY || e.changedTouches[0].pageY;
+                _span.style.cssText=`top: ${_y}px;left: ${_x}px;`;
+                latch=true;
+            },350);
+            e.preventDefault();
+        }
+        function touchMove(e){
+            clearTimeout(time);
+        }
+
+        function setSpan(e){
+            if(latch){
+                let pageX= e.pageX>=0 ? e.pageX : e.changedTouches[0].pageX,
+                    pageY= e.pageY>=0 ? e.pageY: e.changedTouches[0].pageY;
+                isMobile=true;
+                let _spanS=_span.style;
+                if(pageX > _x){
+                    _spanS.width= pageX - _x + 'px';
+                }else{
+                    _spanS.left=pageX + 'px';
+                    _spanS.width= _x - pageX + 'px';
+                }
+                if(pageY > _y){
+                    _spanS.height=pageY-_y + 'px';
+                }else{
+                    _spanS.top= pageY + 'px';
+                    _spanS.height= _y-pageY + 'px';
+                }
+                judgeDoundary(parseInt(_spanS.width) + parseInt(_spanS.left),parseInt(_spanS.height) + parseInt(_spanS.top),parseInt(_spanS.left),parseInt(_spanS.top));
+            }
+        }
+
+        function judgeDoundary(w,h,x,y){
+            boxRectArr.forEach((item,index) => {
+                if( item.disX > x &&  w > item.x && item.disY > y &&  h > item.y){
+                    boxArr[index].classList.add('active');
+                }else{
+                    boxArr[index].classList.remove('active');
+                }
+
+            });
+        }
+        
+        function touchEnd(e){
+            clearTimeout(time);
+        }
+        function removeSpan(e){
+            if(!latch)return;
+            latch=false;
+            _span.parentElement.removeChild(_span);
+            e.stopPropagation();
+        }
+    })()
+</script>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+</head>
+
+<body>
+    
+</body>
+<script>
+    (function(){
+        let content=" 傲世aasda丹http://www.12312aidfi.com/index/index.html佛   哦af安adfadf定和  哦asdasf按点   发货  ";
+        function strL(s){
+            if(typeof s!=='string'){
+                console.error('参数不是字符串');
+                return false;
+            }
+            return s.length > 140;
+        }
+
+        strFilterL(content);
+        function strFilterL(s){
+            if(typeof s!=='string'){
+                console.error('参数不是字符串');
+                return false;
+            }
+            let _s=s,_arr=0;
+            _s=_s.replace(/(^\s*)|(\s*$)/g,'').replace(/(\s+)|(\n+)|(\r+)/g,' ');
+            // TODO  参数暂时没想好怎么匹配
+            _s=_s.replace(/https?:\/\/(w{3}\.)?(\d*|\w*)\.(com|cn|net)(\/\S+)?(.[html|php])?/g,'aaaaaaaaaa');
+            _s=_s.replace(/[\u0x00-\u0x7F]/g,function(s,s1,s2){
+                _arr++;
+                return '';
+            });
+
+            return (_s.length + Math.ceil(_arr/2)) > 140;
+
+        }
+    })()
+</script>
+</html>

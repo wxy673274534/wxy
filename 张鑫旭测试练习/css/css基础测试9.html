@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <style>
+        p,
+        ul,
+        li {
+            padding: 0;
+            margin: 0;
+        }
+
+        .title {
+            font-size: 20px;
+            line-height: 1em;
+            color: #aeaeae;
+            height: 1em;
+        }
+
+        .title+.title {
+            margin-top: 10px;
+        }
+
+        p {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .label>span {
+            box-sizing: border-box;
+            display: inline-block;
+            padding: 0 4px;
+            height: 100%;
+            font-size: 14px;
+            border: 1px solid;
+            border-radius: 3px;
+        }
+
+        .label>span+span {
+            margin-left: 6px;
+        }
+
+        .label>span[type="state"] {
+            color: #ee4e54;
+        }
+
+        .label>span[type="number"] {
+            color: #669ef7;
+        }
+
+        .front {
+            margin-top: 20px;
+        }
+
+        .label {
+            height: 100%;
+            font-size: 0;
+        }
+
+        /* flex布局 */
+        .style1 .title {
+            display: flex;
+        }
+
+        .style1 p {
+            flex: 1;
+        }
+
+        .style1 .label {
+            flex-shrink: 0;
+        }
+
+        .front p {
+            direction: rtl;
+        }
+
+
+        /* float布局 */
+        .style2,.style3 {
+            margin-top: 30px;
+        }
+
+        .style2 .label {
+            float: right;
+        }
+
+        /* table */
+        .style3 .title{
+            display: table;
+        }
+        .style3 P{
+            position: relative;
+            width: 10000px;
+        }
+        .style3 a{
+            position: absolute;
+            /* top: 0; */
+            left: 0;
+            right: 0;
+            height: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .style3 div{
+            white-space: nowrap;
+        }
+        .style3 P,.style3 div{
+            display: table-cell;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="style1">
+        <li class="title">
+            <p>这次是一个行哦啊U盾给老爸的拉都不够爱国吧阿杜vbobgoadhgos111奥莱好多个欧朗傲视GV</p>
+            <div class="label">
+                <span type="type">都市</span>
+                <span type="state">连载中</span>
+                <span type="number">54.82万字</span>
+            </div>
+        </li>
+        <li class="title">
+            <p>这次是一个行哦啊U盾给老爸的拉都不够爱国吧阿杜vbobgoadhgos111奥莱好多个欧朗傲视GV</p>
+            <div class="label">
+                <span type="type">都市</span>
+                <span type="state">完本</span>
+                <span type="number">54.82万字</span>
+            </div>
+        </li>
+        <li class="title">
+            <p>这次是一个行哦啊U盾给老爸的拉</p>
+            <div class="label">
+                <span type="type">都市</span>
+                <span type="state">连载中</span>
+                <span type="number">512314.82万字</span>
+            </div>
+        </li>
+    </ul>
+
+    <ul class="style1 front">
+        <li class="title">
+            <p>这次是一个行哦啊U盾给老爸的拉都不够爱国吧阿杜vbobgoadhgos111奥莱好多个欧朗傲视GV</p>
+            <div class="label">
+                <span type="type">都市</span>
+                <span type="state">连载中</span>
+                <span type="number">54.82万字</span>
+            </div>
+        </li>
+        <li class="title">
+            <p>这次是一个行哦啊U盾给老爸的拉都不够爱国吧阿杜vbobgoadhgos111奥莱好多个欧朗傲视GV</p>
+            <div class="label">
+                <span type="type">都市</span>
+                <span type="state">完本</span>
+                <span type="number">54.82万字</span>
+            </div>
+        </li>
+        <li class="title">
+            <p>这次是一个行哦啊U盾给老爸的拉</p>
+            <div class="label">
+                <span type="type">都市</span>
+                <span type="state">连载中</span>
+                <span type="number">5123134.82万字</span>
+            </div>
+        </li>
+    </ul>
+
+
+
+    <ul class="style2">
+        <li class="title">
+            <div class="label">
+                <span type="type">都市</span>
+                <span type="state">连载中</span>
+                <span type="number">54.82万字</span>
+            </div>
+            <p>这次是一个行哦啊U盾给老爸的拉都不够爱国吧阿杜vbobgoadhgos111奥莱好多个欧朗傲视GV</p>
+        </li>
+        <li class="title">
+            <div class="label">
+                <span type="type">都市</span>
+                <span type="state">完本</span>
+                <span type="number">54.82万字</span>
+            </div>
+            <p>这次是一个行哦啊U盾给老爸的拉都不够爱国吧阿杜vbobgoadhgos111奥莱好多个欧朗傲视GV</p>
+        </li>
+        <li class="title">
+            <div class="label">
+                <span type="type">都市</span>
+                <span type="state">连载中</span>
+                <span type="number">512314.82万字</span>
+            </div>
+            <p>这次是一个行哦啊U盾给老爸的拉</p>
+        </li>
+    </ul>
+    <ul class="style2 front">
+        <li class="title">
+            <div class="label">
+                <span type="type">都市</span>
+                <span type="state">连载中</span>
+                <span type="number">54.82万字</span>
+            </div>
+            <p>这次是一个行哦啊U盾给老爸的拉都不够爱国吧阿杜vbobgoadhgos111奥莱好多个欧朗傲视GV</p>
+        </li>
+        <li class="title">
+            <div class="label">
+                <span type="type">都市</span>
+                <span type="state">完本</span>
+                <span type="number">54.82万字</span>
+            </div>
+            <p>这次是一个行哦啊U盾给老爸的拉都不够爱国吧阿杜vbobgoadhgos111奥莱好多个欧朗傲视GV</p>
+        </li>
+        <li class="title">
+            <div class="label">
+                <span type="type">都市</span>
+                <span type="state">连载中</span>
+                <span type="number">512314.82万字</span>
+            </div>
+            <p>这次是一个行哦啊U盾给老爸的拉</p>
+        </li>
+    </ul>
+
+
+    <ul class="style3">
+        <li class="title">
+            <p><a>这次是一个行哦啊U盾给老爸的拉都不够爱国吧阿杜vbobgoadhgos111奥莱好多个欧朗傲视GV</a></p>
+            <div class="label">
+                <span type="type">都市</span>
+                <span type="state">连载中</span>
+                <span type="number">54.82万字</span>
+            </div>
+        </li>
+        <li class="title">
+            <p><a>这次是一个行哦啊U盾给老爸的拉都不够爱国吧阿杜vbobgoadhgos111奥莱好多个欧朗傲视GV</a></p>
+            <div class="label">
+                <span type="type">都市</span>
+                <span type="state">完本</span>
+                <span type="number">54.82万字</span>
+            </div>
+        </li>
+        <li class="title">
+            <p><a>这次是一个行哦啊U盾给老爸的拉</a></p>
+            <div class="label">
+                <span type="type">都市</span>
+                <span type="state">连载中</span>
+                <span type="number">512314.82万字</span>
+            </div>
+        </li>
+    </ul>
+    <ul class="style3 front">
+        <li class="title">
+            <p><a>这次是一个行哦啊U盾给老爸的拉都不够爱国吧阿杜vbobgoadhgos111奥莱好多个欧朗傲视GV</a></p>
+            <div class="label">
+                <span type="type">都市</span>
+                <span type="state">连载中</span>
+                <span type="number">54.82万字</span>
+            </div>
+        </li>
+        <li class="title">
+            <p><a>这次是一个行哦啊U盾给老爸的拉都不够爱国吧阿杜vbobgoadhgos111奥莱好多个欧朗傲视GV</a></p>
+            <div class="label">
+                <span type="type">都市</span>
+                <span type="state">完本</span>
+                <span type="number">54.82万字</span>
+            </div>
+        </li>
+        <li class="title">
+            <p><a>这次是一个行哦啊U盾给老爸的拉</a></p>
+            <div class="label">
+                <span type="type">都市</span>
+                <span type="state">连载中</span>
+                <span type="number">512314.82万字</span>
+            </div>
+        </li>
+    </ul>
+</body>
+<script>
+
+</script>
+
+</html>

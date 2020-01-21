@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+</head>
+
+<body>
+</body>
+<script>
+    (function(){
+        /**
+        *   1、获取文档的cookie值
+        *   2、增加cookie值userid=1
+        *   3、设置userid相关cookie值的过期时间为1天
+        *   4、获取名称是_csrfToken的cookie值，没有返回空串
+        *   5、删除名为ywkey的cookie值
+        *   6、使用localSorage储存用户的userid
+        *   7、实现localSorage的过期判断
+        */
+
+        // 第一题
+        console.log(document.cookie);
+        
+        // 第二题
+        document.cookie="userid=1";
+
+        // 第三题
+        document.cookie=`userid=1;expires=${new Date().setTime(Date.now()+24*3600000)}`;
+        // 第四题
+        function getCookie(name){
+            let str=document.cookie,value='';
+            str.split(";").forEach(function(item){
+                let _arr=item.split("=");
+                if(_arr[0]===name){
+                    value=decodeURIComponent(_arr[1]);
+                }
+            })
+            return value;
+        }
+        // 第五题
+        /* 删除cookie就是 设置一个同名cookie，并将过期事件设为当前时间或-时间 */
+
+        // 第六题
+        localStorage.setItem('userid',1);
+
+        // 第七题
+        function setLocal(name,value,time){
+            let str=JSON.stringify({
+                value: value,
+                expires: new Date(time).getTime(),
+            });
+            localStorage.setItem(name,str);
+        }
+        setLocal('isText',true,new Date().setTime(Date.now()+24*3600000));
+
+        function getLocal(name){
+            let _obj=JSON.parse(localStorage.getItem(name));
+            if(Date.now() > _obj.expires){
+                localStorage.setItem(name,'');
+                return '';
+            }
+            return _obj.value;
+        }
+        console.log(getLocal('isText'));
+    })();
+</script>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,minimal-ui">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <style>
+        ::-webkit-details-marker{
+            display: none;
+        }
+        ::-moz-details-marker{
+            font-size: 0;
+            float: left;
+        }
+        ul,li{
+            padding: 0;
+            margin: 0;
+        }
+        details{
+            user-select: none;
+            cursor: pointer;
+        }
+        summary{
+            position: relative;
+            padding: 0 10px;
+            outline: none;
+            color: #4b4e57;
+            font-size: 14px;
+            line-height: 40px;
+        }
+        summary::before{
+            content: '';
+            position: absolute;
+            margin-top: -3px;
+            top: 50%;
+            right: 10px;
+            width: 5px;
+            height: 5px;
+            transform: rotate(135deg);
+            border: 2px solid;
+            border-left: none;
+            border-bottom: none;
+            transition: transform .3s;
+        }
+        [open] summary::before{
+            transform: rotate(-45deg);
+        }
+        .box{
+            width: 150px;
+            border: 1px solid #ececec;
+            border-top: none;
+            border-bottom: none;
+        }
+        ul{
+            font-size: 14px;
+            color: #6d6f77;
+            list-style: none;
+            max-height: 0;
+            transition: max-height .3s;
+            overflow: hidden;
+        }
+        [open] + ul{
+            max-height: 500px;
+        }
+        li a{
+            padding-left: 30px;
+            display: block;
+            line-height: 40px;
+            color: inherit;
+            transition: color .3s,background .3s;
+            text-decoration: none;
+        }
+        li a:hover,li a:focus{
+            background-color: #edf9ff;
+            color: #33b2ee;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <details open>
+            <summary>布局</summary>
+        </details>
+        <ul>
+            <li><a href="#">Flex布局</a></li>
+            <li><a href="#">Grid布局</a></li>
+            <li><a href="#">Shapes布局</a></li>
+            <li><a href="#">Columns布局</a></li>
+        </ul>
+        <details>
+            <summary>组件</summary>
+        </details>
+        <ul>
+            <li><a href="#">按钮</a></li>
+            <li><a href="#">输入框</a></li>
+            <li><a href="#">下拉列表</a></li>
+            <li><a href="#">单复选框</a></li>
+        </ul>
+    </div>
+</body>
+<script>
+    
+</script>
+
+</html>
