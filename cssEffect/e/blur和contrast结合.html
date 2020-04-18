@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <style>
+        p{
+            position: absolute;
+            top: 5em;
+            left: 50%;
+            width: 6em;
+            font-size: 3em;
+            color: #fff;
+            transform: translateX(-50%);
+            pointer-events: none;
+            z-index: 10;
+        }
+        .box{
+            margin: 0 auto;
+            padding: 10em;
+            display: flex;
+            flex-wrap: wrap;
+            width: 30em;
+            height: 30em;
+            background-color: black;
+            filter: blur(15px) contrast(30);
+        }
+        .box div{
+            position: relative;
+            width: 3em;
+            height: 3em;
+            border-radius: 100%;
+        }
+        .box div::before{
+            content: '';
+            position: absolute;
+            top: 0;
+            width: inherit;
+            height: inherit;
+            background-color: #fff;
+            transition: all 30s cubic-bezier(0.19, 1, 0.22, 1);;
+        }
+        .box div:hover::before{
+            transform: scale(0);
+            transition-duration: 0.3s;
+        }
+    </style>
+</head>
+<body style="font-size: 16px;background-color: black;">
+    <p>contrast是图像的对比度，需要给元素设置背景色</p>
+    <div class="box"></div>
+</body>
+<script>
+    (function(){
+        let _box=document.getElementsByClassName('box')[0],
+            _fragment=document.createDocumentFragment();
+        for(let i=0;i<100;i++){
+            let oDiv = document.createElement('div');
+            _fragment.appendChild(oDiv);
+        }
+        _box.appendChild(_fragment);
+    })()
+</script>
+</html>
