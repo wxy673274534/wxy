@@ -45,7 +45,7 @@
             position: absolute;
             transform: translate(-50%,-30px);
             opacity: 0;
-            transition: transform .3s,opacity .3s;
+            transition: transform .3s .1s,opacity .3s .1s;
         }
         .slider-thumb::before{
             bottom: 20px;
@@ -74,7 +74,7 @@
         .slider-thumb:hover{
             box-shadow: 0 0 1px 3px skyblue;
         }
-        .slider-thumb:hover::before,.slider-thumb:hover::after{
+        .slider-thumb:hover::before,.slider-thumb:hover::after,.slider-thumb:active::before,.slider-thumb:active::after{
             transform: translate(-50%,0);
             opacity: 1;
         }
@@ -105,18 +105,18 @@
         (function info(){
             setSpeed(currentPosition);
         })();
-        
+
 
         sliderTrack.addEventListener('click',function(e){
             let _x=e.pageX-_left;
             setSpeed(Math.ceil(_x/each));
         })
-        
+
         //pc端 拖拽
         sliderThumb.addEventListener('mousedown',function(e){
             latch=true;
         })
-        slider.addEventListener('mousemove',function(e){
+        document.addEventListener('mousemove',function(e){
             if(!latch)return;
             let _x=e.pageX-_left;
             setSpeed(Math.ceil(_x/each));
@@ -129,7 +129,7 @@
         sliderThumb.addEventListener('touchstart',function(e){
             latch=true;
         })
-        slider.addEventListener('touchmove',function(e){
+        document.addEventListener('touchmove',function(e){
             if(!latch)return;
             let _x=e.changedTouches[0].pageX-_left;
             setSpeed(Math.ceil(_x/each));
@@ -146,3 +146,198 @@
     })()
 </script>
 </html>
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="apple-mobile-web-app-title" content="CodePen">-->
+<!--    <title>CodePen - 滑动条</title>-->
+<!--    <style>-->
+<!--        /**css-tips**/-->
+<!--        [data-title] {-->
+<!--            position: relative;-->
+<!--            overflow: visible;-->
+<!--        }-->
+
+<!--        [data-title]:before,-->
+<!--        [data-title]:after {-->
+<!--            display: block;-->
+<!--            position: absolute;-->
+<!--            z-index: 1;-->
+<!--            left: 50%;-->
+<!--            bottom: 100%;-->
+<!--            transform: translate(-50%, -20px);-->
+<!--            opacity: 0;-->
+<!--            transition: .15s .15s;-->
+<!--            color: #373c42;-->
+<!--            visibility: hidden;-->
+<!--        }-->
+
+<!--        [data-title]:before {-->
+<!--            content: attr(data-title);-->
+<!--            border-radius: 3px;-->
+<!--            padding: 6px 10px;-->
+<!--            line-height: 18px;-->
+<!--            text-align: left;-->
+<!--            background-color: #373c42;-->
+<!--            color: #fff;-->
+<!--            font-size: 12px;-->
+<!--            font-style: normal;-->
+<!--            white-space: nowrap;-->
+<!--        }-->
+
+<!--        [data-title]:after {-->
+<!--            content: '';-->
+<!--            width: 0;-->
+<!--            height: 0;-->
+<!--            margin-bottom: -12px;-->
+<!--            overflow: hidden;-->
+<!--            border: 6px solid transparent;-->
+<!--            border-top-color: currentColor;-->
+<!--        }-->
+
+<!--        [data-title]:hover:before,-->
+<!--        [data-title]:hover:after {-->
+<!--            visibility: visible;-->
+<!--            transform: translate(-50%, -10px);-->
+<!--            opacity: 1;-->
+<!--        }-->
+
+<!--        /**slider**/-->
+
+<!--        .slider {-->
+<!--            padding: 5px 0;-->
+<!--            position: relative;-->
+<!--            margin: 30px 10%;-->
+<!--            &#45;&#45;percent: 0;-->
+<!--            outline:0;-->
+<!--        }-->
+
+<!--        .slider-track {-->
+<!--            display: block;-->
+<!--            width: 100%;-->
+<!--            height: 6px;-->
+<!--            background-color: lightgray;-->
+<!--            border: 0;-->
+<!--            padding: 0;-->
+<!--            outline:0;-->
+<!--        }-->
+
+<!--        .slider-track::before {-->
+<!--            content: '';-->
+<!--            display: block;-->
+<!--            height: 100%;-->
+<!--            background-color: skyblue;-->
+<!--            width: calc(1% * var(&#45;&#45;percent));-->
+<!--        }-->
+
+<!--        .slider-thumb {-->
+<!--            position: absolute;-->
+<!--            width: 16px;-->
+<!--            height: 16px;-->
+<!--            border: 0;-->
+<!--            padding: 0;-->
+<!--            background: #fff;-->
+<!--            box-shadow: 0 0 0 1px skyblue;-->
+<!--            border-radius: 50%;-->
+<!--            left: calc(1% * var(&#45;&#45;percent));-->
+<!--            top: 0;-->
+<!--            margin: auto -8px;-->
+<!--            outline:0;-->
+<!--            transition:all .15s .15s, left 0s 0s;-->
+<!--        }-->
+
+<!--        /** hover & focus **/-->
+<!--        .slider:focus .slider-thumb,-->
+<!--        .slider-thumb:hover{-->
+<!--            box-shadow: 0 0 0 2px skyblue;-->
+<!--        }-->
+
+<!--        .slider-thumb[data-title]:before{-->
+<!--            counter-reset: value var(&#45;&#45;percent);-->
+<!--            content: counter(value);-->
+<!--        }-->
+
+<!--        html:hover .slider-thumb[data-title]:active:before,-->
+<!--        html:hover .slider-thumb[data-title]:active:after,-->
+<!--        .slider:focus .slider-thumb[data-title]:before,-->
+<!--        .slider:focus .slider-thumb[data-title]:after {-->
+<!--            visibility: visible;-->
+<!--            transform: translate(-50%, -10px);-->
+<!--            opacity: 1;-->
+<!--        }-->
+<!--    </style>-->
+<!--    <script>-->
+<!--        window.console = window.console || function(t) {};-->
+<!--    </script>-->
+<!--    <script>-->
+<!--        if (document.location.search.match(/type=embed/gi)) {-->
+<!--            window.parent.postMessage("resize", "*");-->
+<!--        }-->
+<!--    </script>-->
+<!--</head>-->
+<!--<body translate="no">-->
+<!--<h3>slider1</h3>-->
+<!--<div class="slider" tabindex="0" style="&#45;&#45;percent:50">-->
+<!--    <button class="slider-track" tabindex="-1"></button>-->
+<!--    <button class="slider-thumb" tabindex="-1" data-title></button>-->
+<!--</div>-->
+<!--<h3>slider2</h3>-->
+<!--<div class="slider" tabindex="0" style="&#45;&#45;percent:20">-->
+<!--    <button class="slider-track" tabindex="-1"></button>-->
+<!--    <button class="slider-thumb" tabindex="-1" data-title></button>-->
+<!--</div>-->
+<!--<h3>slider3</h3>-->
+<!--<div class="slider" tabindex="0" style="&#45;&#45;percent:20">-->
+<!--    <button class="slider-track" tabindex="-1"></button>-->
+<!--    <button class="slider-thumb" tabindex="-1" data-title></button>-->
+<!--</div>-->
+<!--<h3>slider4</h3>-->
+<!--<div class="slider" tabindex="0" style="&#45;&#45;percent:20">-->
+<!--    <button class="slider-track" tabindex="-1"></button>-->
+<!--    <button class="slider-thumb" tabindex="-1" data-title></button>-->
+<!--</div>-->
+<!--<script id="rendered-js">-->
+<!--    (function () {-->
+<!--        var slider = document.querySelectorAll('.slider');-->
+<!--        slider.forEach(function (el) {-->
+<!--            el.addEventListener('mousedown', function (ev) {-->
+<!--                const { left, width } = el.getBoundingClientRect();-->
+<!--                const percent = (ev.clientX - left) / width * 100;-->
+<!--                render(el, percent);-->
+<!--                document.onmousemove = function (ev) {-->
+<!--                    const percent = (ev.clientX - left) / width * 100;-->
+<!--                    render(el, percent);-->
+<!--                };-->
+<!--                document.onmouseup = function (ev) {-->
+<!--                    document.onmousemove = null;-->
+<!--                };-->
+<!--            });-->
+<!--            el.addEventListener('keydown', function (ev) {-->
+<!--                el.focus();-->
+<!--                let percent = Number(getComputedStyle(el).getPropertyValue('&#45;&#45;percent'));-->
+<!--                switch (ev.keyCode) {-->
+<!--                    case 37:-->
+<!--                        percent -= 1;-->
+<!--                        break;-->
+<!--                    case 39:-->
+<!--                        percent += 1;-->
+<!--                        break;-->
+<!--                    default:-->
+<!--                        break;}-->
+
+<!--                render(el, percent);-->
+<!--            });-->
+<!--        });-->
+<!--        function render(el, percent) {-->
+<!--            percent = Math.min(Math.max(0, percent), 100);-->
+<!--            el.style.setProperty('&#45;&#45;percent', parseInt(percent, 10));-->
+<!--            //这里取整导致有些不跟手的感觉（不过有些滑动条确实有步长的设置），只是为了让css-tip可以应用上'&#45;&#45;percent属性（可以另外设置属性解决）-->
+<!--        }-->
+<!--    })();-->
+<!--    //# sourceURL=pen.js-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
