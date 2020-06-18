@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>有科技感的时钟</title>
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="renderer" content="webkit">
     <meta name="force-rendering" content="webkit">
@@ -11,56 +11,293 @@
             margin: 0;
             height: 100%;
             overflow: hidden;
+            background-color: #b3b3b3;
+        }
+        .box{
+            position: relative;
+            margin: 100px auto 0;
+            width: 670px;
+            perspective: 800px;
+            transform-style: preserve-3d;
+            animation: reverseRotate 10s linear infinite;
         }
         .container{
-            margin: 100px 200px 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100px;
+            transform-style: preserve-3d;
+            animation: rotate 10s linear infinite;
             background-color: #000;
         }
         .container > div{
+            flex-shrink: 0;
             position: relative;
+        }
+        .container > div + div{
+            margin-left: 5px;
+        }
+        .container > div:not([class]){
             width: 30px;
             height: 60px;
         }
+        .container > div:nth-of-type(10){
+            margin-right: 20px;
+        }
         .container [class^=line]{
+            position: absolute;
+            background-color: #282e2e;
+            transform-style: preserve-3d;
+        }
+        .container [class^=line]::before,.container [class^=line]::after{
+            content: '';
+            position: absolute;
+            transform: translateZ(30px);
+            background-color: #3f4e4e;
+            box-shadow: 0 0 1px #425454;
+            will-change: background-color,transform;
+        }
+        .container [class^=line]::before{
+            transition: background-color .5s,transform .5s;
+        }
+        .container [class^=line]::after{
+            transition: background-color .5s,transform .5s .2s;
+        }
+        .container .line1,.container .line2,.container .line3{
+            left: 2px;
+            right: 2px;
+            height: 2px;
+        }
+        .container .line1::after,.container .line2::after,.container .line3::after,
+        .container .line1::before,.container .line2::before,.container .line3::before{
+            width: 49%;
+            height: 100%;
+        }
+        .container .line1::before,.container .line2::before,.container .line3::before{
+            left: 0;
+        }
+        .container .line1::after,.container .line2::after,.container .line3::after{
+            right: 0;
+        }
+        .container .line2{
+            top: 29px;
+        }
+        .container .line3{
+            bottom: 0;
+        }
+        .container .line4,.container .line5,.container .line6,.container .line7{
+            width: 2px;
+            height: 26px;
+        }
+        .container .line4::before,.container .line5::before,.container .line6::before,.container .line7::before,
+        .container .line4::after,.container .line5::after,.container .line6::after,.container .line7::after{
+            height: 49%;
+            width: 2px;
+        }
+        .container .line4::before,.container .line5::before,.container .line6::before,.container .line7::before{
+            top: 0;
+        }
+        .container .line4::after,.container .line5::after,.container .line6::after,.container .line7::after{
+            bottom: 0;
+        }
+        .container .line4,.container .line5{
+            top: 2px;
+        }
+        .container .line6,.container .line7{
+            bottom: 2px;
+        }
+        .container .line5,.container .line7{
+            right: 0;
+        }
+
+        .container > .HLine{
+            width: 15px;
+            height: 2px;
             background-color: #181919;
         }
-        .container .line1{
+        .container > .HLine::before,.container > .spot::before{
+            content: '';
             position: absolute;
-            left: 2px;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            transform: translateZ(50px);
+        }
+        .container > .HLine::before{
+            background-color: #34eabc;
+        }
+        .container > .spot{
+            width: 5px;
+            height: 5px;
+            background-color: transparent;
+            box-shadow: 0 10px 0 0 #181919,0 -10px 0 0 #181919;
+        }
+        .container > .spot::before{
+            background-color: transparent;
+            box-shadow: 0 10px 0 0 #34eabc,0 -10px 0 0 #34eabc;
+        }
+        [data-number='0'] .line1::after,[data-number='0'] .line3::after,
+        [data-number='0'] .line4::after,[data-number='0'] .line5::after,
+        [data-number='0'] .line6::after,[data-number='0'] .line7::after,
+        [data-number='0'] .line1::before,[data-number='0'] .line3::before,
+        [data-number='0'] .line4::before,[data-number='0'] .line5::before,
+        [data-number='0'] .line6::before,[data-number='0'] .line7::before,
+        [data-number='1'] .line5::after,[data-number='1'] .line7::after,
+        [data-number='1'] .line5::before,[data-number='1'] .line7::before,
+        [data-number='2'] .line1::after,[data-number='2'] .line2::after,
+        [data-number='2'] .line3::after,[data-number='2'] .line5::after,
+        [data-number='2'] .line6::after,[data-number='2'] .line1::before,
+        [data-number='2'] .line2::before,[data-number='2'] .line3::before,
+        [data-number='2'] .line5::before,[data-number='2'] .line6::before,
+        [data-number='3'] .line1::after,[data-number='3'] .line2::after,
+        [data-number='3'] .line3::after,[data-number='3'] .line5::after,
+        [data-number='3'] .line7::after,[data-number='3'] .line1::before,
+        [data-number='3'] .line2::before,[data-number='3'] .line3::before,
+        [data-number='3'] .line5::before,[data-number='3'] .line7::before,
+        [data-number='4'] .line2::after,[data-number='4'] .line4::after,
+        [data-number='4'] .line5::after,[data-number='4'] .line7::after,
+        [data-number='4'] .line2::before,[data-number='4'] .line4::before,
+        [data-number='4'] .line5::before,[data-number='4'] .line7::before,
+        [data-number='5'] .line1::after,[data-number='5'] .line2::after,
+        [data-number='5'] .line3::after,[data-number='5'] .line4::after,
+        [data-number='5'] .line7::after,[data-number='5'] .line1::before,
+        [data-number='5'] .line2::before,[data-number='5'] .line3::before,
+        [data-number='5'] .line4::before,[data-number='5'] .line7::before,
+        [data-number='6'] .line1::after,[data-number='6'] .line2::after,
+        [data-number='6'] .line3::after,[data-number='6'] .line4::after,
+        [data-number='6'] .line6::after,[data-number='6'] .line7::after,
+        [data-number='6'] .line1::before,[data-number='6'] .line2::before,
+        [data-number='6'] .line3::before,[data-number='6'] .line4::before,
+        [data-number='6'] .line6::before,[data-number='6'] .line7::before,
+        [data-number='7'] .line1::after,[data-number='7'] .line5::after,
+        [data-number='7'] .line7::after,[data-number='7'] .line1::before,
+        [data-number='7'] .line5::before,[data-number='7'] .line7::before,
+        [data-number='8'] [class^=line]::before,[data-number='8'] [class^=line]::after,
+        [data-number='9'] .line1::after,[data-number='9'] .line2::after,
+        [data-number='9'] .line3::after,[data-number='9'] .line4::after,
+        [data-number='9'] .line5::after,[data-number='9'] .line7::after,
+        [data-number='9'] .line1::before,[data-number='9'] .line2::before,
+        [data-number='9'] .line3::before,[data-number='9'] .line4::before,
+        [data-number='9'] .line5::before,[data-number='9'] .line7::before{
+            background-color: #34eabc;
+            transform: translateZ(50px);
+        }
+        .container > .lid{
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: 0;
+            transform: translateZ(50px);
+            /* background-image: linear-gradient( 176deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 20%, rgba(255,255,255,0.2) 77%, rgba(0,0,0,0.0) 94%, rgba(0,0,0,0.0) 100% ); */
+            background-color: rgba(255,255,255,0.4);
+            border: 2px solid rgba(255,255,255,0.9);
+        }
+        .container::before,.container::after{
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 50px;
+            background-color: rgba(255,255,255,0.4);
+        }
+        .container::before{
+            top: 0;
+            transform-origin: 50% 0;
+            transform: rotateX(90deg);
+        }
+        .container::after{
+            bottom: 0;
+            transform-origin: 50% 100%;
+            transform: rotateX(-90deg);
+        }
+
+        @keyframes rotate {
+            0%{
+                transform: rotateX(0) rotateZ(0);
+            }
+            50%{
+                transform: rotateX(20deg) rotateZ(180deg);
+            }
+            100%{
+                transform: rotateX(0) rotateZ(360deg);
+            }
+        }
+        @keyframes reverseRotate {
+            0%{
+                transform: rotateZ(0);
+            }
+            100%{
+                transform: rotateZ(-360deg);
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div>
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
-            <div class="line4"></div>
-            <div class="line5"></div>
-            <div class="line6"></div>
-            <div class="line7"></div>
+    <div class="box">
+        <div class="container">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div class="HLine"></div>
+            <div></div>
+            <div></div>
+            <div class="HLine"></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div class="spot"></div>
+            <div></div>
+            <div></div>
+            <div class="spot"></div>
+            <div></div>
+            <div></div>
+            <div class="lid"></div>
         </div>
-        <div>0</div>
-        <div>2</div>
-        <div>0</div>-
-        <div>0</div>
-        <div>6</div>-
-        <div>0</div>
-        <div>5</div>
-        <div>1</div>
-        <div>4</div>:
-        <div>0</div>
-        <div>5</div>:
-        <div>3</div>
-        <div>0</div>
     </div>
 </body>
 <script>
-    
+    (function(){
+        let _divs=document.querySelectorAll('.container > div:not([class])');
+        _divs=Array.prototype.slice.call(_divs,0);
+        _divs.forEach((item)=>{
+            item.dataset.number=0;
+            let fragment = document.createDocumentFragment();
+            for(let i=1;i<8;i++){
+                let div= document.createElement('div');
+                div.className=('line'+ i);
+                fragment.appendChild(div);
+            }
+            item.appendChild(fragment);
+        });
+        let _oldTime=new Date();
+        (function setData(){
+            let _initTime=new Date(),_str='';
+            if(_oldTime.getSeconds() == _initTime.getSeconds()){
+                requestAnimationFrame(setData);
+                return;
+            };
+            _str += _initTime.getFullYear();
+            _str += zero(_initTime.getMonth() + 1);
+            _str += zero(_initTime.getDate());
+            _str += zero(_initTime.getHours());
+            _str += zero(_initTime.getMinutes());
+            _str += zero(_initTime.getSeconds());
+            for(let i=0;i<14;i++){
+                _divs[i].dataset.number=_str[i];
+            }
+            _oldTime=_initTime;
+            requestAnimationFrame(setData);
+        })();
+        function zero(value) {
+            if (value < 10) {
+                return '0' + value;
+            }
+            return value;
+        };
+    })();
 </script>
 </html>
