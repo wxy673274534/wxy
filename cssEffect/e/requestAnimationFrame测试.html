@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>requestAnimationFrame测试</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <style>
+        .box{
+            width: 500px;
+            height: 300px;
+            background-color: darkcyan;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+<script>
+    (function(){
+        let box=document.getElementsByClassName('box')[0];
+        requestAnimationFrame(_fn);
+        console.time('开始时间');
+        for(let i=0;i<10000;i++){
+            console.log(`第${i+1}次查询：当前元素的宽为${box.offsetWidth}`);
+        }
+        console.timeEnd('开始时间');
+        function _fn(){
+            let _n=box.offsetWidth;
+            box.style.width = (_n - 1) + 'px';
+            console.log(_n);
+            if(_n<=0)return;
+            requestAnimationFrame(_fn);
+        }
+    })();
+</script>
+</html>
