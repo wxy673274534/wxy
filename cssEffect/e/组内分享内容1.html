@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>2020-09-24 第一次分享内容</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <style>
+        ::-webkit-details-marker{
+            display: none;
+        }
+        ::-moz-details-marker{
+            font-size: 0;
+            float: left;
+        }
+        details{
+            user-select: none;
+        }
+        summary{
+            outline: none;
+        }
+        input,button{border: none;margin: 0;}
+        input,button{outline: none;}
+        button{background-color: transparent;}
+
+        .share1 strong{
+            display: inline-block;
+            margin-right: 16px;
+            font-size: 30px;
+            color: #c63220;
+        }
+        .share1 strong::first-letter{
+            font-size: 24px;
+            font-weight: 400;
+        }
+
+        .share2 table{
+            text-align: center;
+        }
+        .share2 td:empty::before{
+            content: '/';
+            color: #999;
+        }
+        .share3 li + li{
+            border-top: 1px solid #c63220;
+        }
+
+
+        .search{
+            position: relative;
+            margin: 14px 14px 18px;
+            height: 38px;
+        }
+        .search input{
+            box-sizing: border-box;
+            padding: 0 12.5px;
+            width: 100%;
+            line-height: 38px;
+            border-radius: 38px;
+            background-color: #f6f6f6;
+        }
+        .search label{
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            line-height: 1;
+            font-size: 13px;
+            color: #999;
+            transform: scale(0.8) translateY(-200%);
+            transition: transform .5s;
+        }
+        .search label::before{
+            content: '';
+            margin-right: 7px;
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADsAAAA7CAMAAADy+wKBAAAAilBMVEUAAAClpaWioqKlpaWlpaWlpaWkpKSkpKSlpaWmpqalpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWkpKSlpaWlpaWioqKlpaWkpKSlpaWlpaWkpKSkpKSkpKSlpaWlpaWlpaWkpKSkpKSlpaWlpaWlpaWkpKSlpaWkpKSjo6OkpKSmpqakpKSlpaXFRWgfAAAALXRSTlMA+Qfq9O8TC90P18i0reR0zqFPOyAbF4x7SbtaK5NrQ6dmVIaBcDGXNiWdYsN3iasDAAACvUlEQVRIx6WW2XqCMBCFw5IAsu87CAJWre//eu2XAYIahNpzZzK/Z2YyQNCLxMBLjo4lC1j9Plc+QVtioO3cHySbHtlFFiW+v8ppwk007OQ7X7qnvSUVP7uvSjgF4jpKbhKLlLH0K4xlYV4z/FU4SmZQOhxtb4iUwM9PmYon/OApK67JRKpuuowJ+kwaaZUPa/bkadYvfWh0eXROOWkrtxE92Iij4iqN7ebU7GNA9RZxpSUq5O1eXs41AzTz0ZqqEe61p2lKRldA+eotGmQ9ZV1gqNV7O64d1FxGD6sxXZQq9FbEpd2W66VxKFFbE22odsCYLNsAhaRoSzGmgQVi+t62BflgnCtskGnzcYu2dRSekk5h3MgONpFoaDAvdCzlLQ0OjR1YIrTzCdojgybNngiHlbuz4HxmLcp+7WLPdDyqudH0pxRucuyE7ZkVKKvsYk/A/tP3//XqlPV2sa782Gd3//mKcL7sKbTprBh72C+H+hTssYR5jnbPs876SjAt+LaDNWnKMVkMKbwjxU00PdAUvUVkDq+rfLNT0OXDBTGFKhhvjVYLtieyXOzoGrbfo4UhcF7QF/hD9W3WpMQcWyQ28F1wvDfF2hZ8zYbn77YJsL7qTGwVQhrlZWAOo3PDRy8xuN7L8DWjFgOsdgEHrY/SHXTmjJ/WyLApZb32nFTs0E26feLB1bgvWIY9LNbTWIecJphwutFI8z3HMcqkadO86q7ZAe45DI45sNbq7H6FJUtVVUuSZ1BwdWEdVr7OsMuT2gdDBtu45MBimOt8UnBrjU4lwFcOjJSi59Dy0QtFhBgsnzXEoy9eqT6A34kfidOMTPCVCyORBENbxa5pmNfulhahRklQMMGusjr5ikaiiBBNAY4DHxm8W4EJsOCKf4ejCa7R30VGuEefwyn6RIr7C5si+khibaeAfqwft4OT661l3EIAAAAASUVORK5CYII=') no-repeat center/100% 100%;
+            vertical-align: middle;
+        }
+        .search input::-webkit-input-placeholder{
+            opacity: 0;
+        }
+        .search input:placeholder-shown ~ label{
+            transform: scale(1) translateY(-50%);
+        }
+
+
+        .share6 button,.share7 button{
+            width: 200px;
+            line-height: 40px;
+            color: #c63220;
+            border: 2px solid;
+        }
+        .share6 button{
+            transition: color 1s;
+        }
+        
+        .share7 button{
+            border-radius: 10000px;
+        }
+
+        .share8 li:nth-of-type(-n + 3){
+            background-color: #c63220;
+        }
+
+        .share9 div{
+            position: relative;
+            width: 50px;
+            height: 50px;
+            margin: 70px auto;
+        }
+        .share9 span{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: -100%;
+            left: -100%;
+            border-radius: 50%;
+            background-color: #c63220;
+            transform-origin: 75px 75px;
+        }
+        .share9[open] span{
+            animation: rotate 1.2s infinite linear;
+        }
+
+        .share9 span:nth-of-type(2){
+            animation-delay: .4s;
+            /* animation-delay: -.8s; */
+        }
+        .share9 span:last-of-type{
+            animation-delay: .8s;
+            /* animation-delay: -.4s; */
+        }
+
+        .share10 .odiv{
+            /* margin: 0 30px; */
+            /* padding: 60px; */
+            height: 150px;
+            background-color: blue;
+        }
+        .share10 .odiv div{
+            width: 100%;
+            height: 100%;
+            background-color: #c63220;
+        }
+
+
+
+
+
+        @keyframes rotate{
+            0%{
+                transform: rotate(0);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <details class="share1">
+        <summary>
+            <p>1、::first-letter  伪元素</p>
+        </summary>
+        <strong>￥100.00</strong>
+    </details>
+
+    <details class="share2">
+        <summary>
+            <p>2、:empty  伪类</p>
+        </summary>
+        <div>
+            <table border="1">
+                <tr>
+                    <th>姓名</th>
+                    <th>昵称</th>
+                    <th>手机</th>
+                </tr>
+                <tr>
+                    <td>吴</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+              </table>
+        </div>
+    </details>
+
+    <details class="share3">
+        <summary>
+            <p>3、‘+’ 选择器</p>
+        </summary>
+        <ul>
+            <li>列表</li>
+            <li>列表</li>
+            <li>列表</li>
+        </ul>
+    </details>
+
+    <details class="share4">
+        <summary>
+            <p>4、:placeholder-shown伪类  5、‘~’ 选择器</p>
+        </summary>
+        <div class="search">
+            <input id="myI" type="search" placeholder="会员搜索" />
+            <label for="myI">会员搜索</label>
+        </div>
+    </details>
+
+    <details class="share6">
+        <summary>
+            <p>6、border的默认颜色，等于当前元素的color</p>
+        </summary>
+        <button>按钮</button>
+    </details>
+
+    <details class="share7">
+        <summary>
+            <p>7、border-radius两个特性的应用</p>
+        </summary>
+        <button>按钮</button>
+    </details>
+
+    <details class="share8">
+        <summary>
+            <p>8、nth-child()，nth-of-type()  n为负的应用</p>
+        </summary>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+        </ul>
+    </details>
+
+    <details class="share9">
+        <summary>
+            <p>9、animation-delay为负的应用</p>
+        </summary>
+        <div>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </details>
+
+    <details class="share10">
+        <summary>
+            <p>10、块元素默认宽度的应用</p>
+        </summary>
+        <div class="odiv">
+            <div></div>
+        </div>
+    </details>
+</body>
+<script>
+    
+</script>
+</html>

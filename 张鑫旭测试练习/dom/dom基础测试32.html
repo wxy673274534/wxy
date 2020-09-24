@@ -167,5 +167,16 @@
             e.stopPropagation();
         }
     })()
+
+
+    let pro=(1920/1020).toFixed(2),_obj={},_w= window.innerWidth,_h=window.innerHeight;
+    if(pro < _w/_h){
+        _obj.h=_h;
+        _obj.w=_h*pro;
+    }else{
+        _obj.w=_w;
+        _obj.h=_w/pro;
+    }
+    console.log(_obj);
 </script>
 </html>
