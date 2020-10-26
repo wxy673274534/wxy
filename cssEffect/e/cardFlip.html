@@ -59,15 +59,51 @@
 <body>
     <div class="page">
         <div class="box">
-            <img class="back" src="../../2/img/carousel1.jpg" />
-            <img class="positive" src="../../2/img/carousel2.jpg" />
+            <!-- <img class="back" src="../../2/img/carousel1.jpg" />
+            <img class="positive" src="../../2/img/carousel2.jpg" /> -->
+            <img src="../images/cards/01.png" />
         </div>
     </div>
 </body>
 <script>
     let _e=document.querySelector('.box');
-    _e.onclick=function(){
-        this.classList.toggle('rotate');
+    let _t,_i='01';
+    _e.onclick=_start;
+
+    function _start(){
+        // this.classList.toggle('rotate');
+        if(_t){clearInterval(_t);_t='';return;};
+        _t=setInterval(() => {
+            if(_i>=23){_i='01'};
+            document.querySelector('.box img').src=`../images/cards/${_i}.png`;
+            _i=_fn(~~_i+1);
+        },100);
     }
+
+    (function(){
+        let _arr=[];
+        for(let i=1;i<23;i++){
+            _arr.push(new Promise((r,l)=>{
+                let _img=new Image;
+                _img.onload=function(){
+                    r();
+                }
+                _img.onerror=function(){
+                    r();
+                }
+                _img.src=`../images/cards/${_fn(i)}.png`;
+            }))
+        }
+        Promise.all(_arr).then(()=>{
+            _start();
+        })
+    })();
+    function _fn(i){
+        if(i<10){
+            return '0'+i;
+        }
+        return i;
+    }
+
 </script>
 </html>
