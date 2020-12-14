@@ -57,55 +57,63 @@
             let _r=_e.getBoundingClientRect();
             let _iw=50;_ih=50,_it=0,_il=0;
             if(!_span){
+                console.log('------w,h+',_iw,_ih);
                 let _f=document.createDocumentFragment();
                 _span = document.createElement('span');
                 _i = document.createElement('i');
                 _span.appendChild(_i);
                 _f.appendChild(_span);
 
-                _span.onmousedown=function(e){
-                    let x=e.pageX,y=e.pageY;
-                    document.body.style.cursor='move';
-                    document.onmousemove=function(e){
-                        let _x= _il + e.pageX - x,_y= _it + e.pageY - y;
-                        
-                        _il=_calc(_x,'width',_iw,0);
-
-                        _it=_calc(_y,'height',_ih,0);
-                        
-                        x=e.pageX;
-                        y=e.pageY;
-                        
-                        _fn();
-                    }
-                }
-                _i.onmousedown=function(e){
-                    let x=e.pageX,y=e.pageY;
-                    document.body.style.cursor='se-resize';
-                    document.onmousemove=function(e){
-                        let _x= _iw + e.pageX - x,_y= _ih + e.pageY - y;
-                        
-                        _iw=_calc(_x,'width', _il,50);
-
-                        _ih=_calc(_y,'height', _it,50);
-
-                        x=e.pageX;
-                        y=e.pageY;
-                        
-                        _fn();
-                        
-                    }
-                    e.stopPropagation();
-                }
-                document.onmouseup=function(){
-                    document.onmousemove=null;
-                    document.body.style.cursor='auto';
-                }
 
 
                 _e.appendChild(_f);
 
-                function _calc(n,k,i,s){
+            }
+
+            _fn();
+
+            _span.onmousedown=function(e){
+                let x=e.pageX,y=e.pageY;
+                document.body.style.cursor='move';
+                document.onmousemove=function(e){
+                    let _x= _il + e.pageX - x,_y= _it + e.pageY - y;
+                    
+                    _il=_calc(_x,'width',_iw,0);
+                    _it=_calc(_y,'height',_ih,0);
+                    
+                    x=e.pageX;
+                    y=e.pageY;
+                    
+                    _fn();
+                }
+            }
+            _i.onmousedown=function(e){
+                let x=e.pageX,y=e.pageY;
+                document.body.style.cursor='se-resize';
+                document.onmousemove=function(e){
+                    let _x= _iw + e.pageX - x,_y= _ih + e.pageY - y;
+                    
+                    _iw=_calc(_x,'width', _il,50);
+                    _ih=_calc(_y,'height', _it,50);
+                    x=e.pageX;
+                    y=e.pageY;
+                    
+                    _fn();
+                    
+                }
+                e.stopPropagation();
+            }
+            document.onmouseup=function(){
+                document.onmousemove=null;
+                document.body.style.cursor='auto';
+            }
+            
+            function _fn(){
+                _span.style.cssText=`width: ${_iw}px;height: ${_ih}px;top: ${_it}px;left: ${_il}px;`;
+            }
+            
+
+            function _calc(n,k,i,s){
                     if(n < s){
                         return s;
                     }else if(n > _r[k] - i){
@@ -114,13 +122,6 @@
                         return n;
                     }
                 }
-
-            }
-            _fn();
-            
-            function _fn(){
-                _span.style.cssText=`width: ${_iw}px;height: ${_ih}px;top: ${_it}px;left: ${_il}px;`;
-            }
         };
 
 
