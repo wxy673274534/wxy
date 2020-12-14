@@ -149,15 +149,15 @@
                     _el.style.clipPath='none';
                     return;
                 }
-                if(o>4.5){
+                if(o>20){
                     o=8*(_s/80);
                 }
                 requestAnimationFrame(_fn);
-                _feI.setAttribute('width',_w=_w+o);
-                _feI.setAttribute('height',_h=_h+o);
-                _feI.setAttribute('x',_x=_x-o/2);
-                _feI.setAttribute('y',_y=_y-o/2);
-                _feD.setAttribute('scale',_s=_s-0.4);
+                _feI.setAttribute('width',_w= ~~(_w+o));
+                _feI.setAttribute('height',_h=~~(_h+o));
+                _feI.setAttribute('x',_x=~~(_x-o/2));
+                _feI.setAttribute('y',_y=~~(_y-o/2));
+                _feD.setAttribute('scale',_s=~~(_s-0.2));
                 _el.style.clipPath=`circle(${_w/2}px at ${e.offsetX}px ${e.offsetY}px)`;
             }
         });

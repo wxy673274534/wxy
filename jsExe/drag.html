@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>原生拖拽</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .dragBox{
+            margin: 30px 0 0 30px;
+            position: relative;
+            display: inline-block;
+            width: 70%;
+            height: 500px;
+            min-width: 500px;
+            box-shadow: 0 0 0 1px #666;
+            user-select: none;
+        }
+        .dragBox span{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50px;
+            height: 50px;
+            background-color: pink;
+            cursor: move;
+        }
+        .dragBox i{
+            position: absolute;
+            right: -5px;
+            bottom: -5px;
+            width: 10px;
+            height: 10px;
+            cursor: se-resize;
+        }
+    </style>
+</head>
+<body>
+    <div class="dragBox">
+        
+    </div>
+    <button class="but">生成/重置</button>
+</body>
+<script>
+    (function(){
+        let _span,_i;
+        document.querySelector('.but').onclick=function(){
+            let _e=document.querySelector('.dragBox');
+            let _r=_e.getBoundingClientRect();
+            let _iw=50;_ih=50,_it=0,_il=0;
+            if(!_span){
+                let _f=document.createDocumentFragment();
+                _span = document.createElement('span');
+                _i = document.createElement('i');
+                _span.appendChild(_i);
+                _f.appendChild(_span);
+
+                _span.onmousedown=function(e){
+                    let x=e.pageX,y=e.pageY;
+                    document.body.style.cursor='move';
+                    document.onmousemove=function(e){
+                        let _x= _il + e.pageX - x,_y= _it + e.pageY - y;
+                        
+                        _il=_calc(_x,'width',_iw,0);
+
+                        _it=_calc(_y,'height',_ih,0);
+                        
+                        x=e.pageX;
+                        y=e.pageY;
+                        
+                        _fn();
+                    }
+                }
+                _i.onmousedown=function(e){
+                    let x=e.pageX,y=e.pageY;
+                    document.body.style.cursor='se-resize';
+                    document.onmousemove=function(e){
+                        let _x= _iw + e.pageX - x,_y= _ih + e.pageY - y;
+                        
+                        _iw=_calc(_x,'width', _il,50);
+
+                        _ih=_calc(_y,'height', _it,50);
+
+                        x=e.pageX;
+                        y=e.pageY;
+                        
+                        _fn();
+                        
+                    }
+                    e.stopPropagation();
+                }
+                document.onmouseup=function(){
+                    document.onmousemove=null;
+                    document.body.style.cursor='auto';
+                }
+
+
+                _e.appendChild(_f);
+
+                function _calc(n,k,i,s){
+                    if(n < s){
+                        return s;
+                    }else if(n > _r[k] - i){
+                        return _r[k] - i;
+                    }else{
+                        return n;
+                    }
+                }
+
+            }
+            _fn();
+            
+            function _fn(){
+                _span.style.cssText=`width: ${_iw}px;height: ${_ih}px;top: ${_it}px;left: ${_il}px;`;
+            }
+        };
+
+
+
+    })();
+</script>
+</html>
