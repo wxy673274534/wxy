@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>DOM排序</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <ol>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ol>
+    <input value="3,2,4,1" placeholder="输入顺序，用‘,’分开" />
+    <button class="but">排序</button>
+</body>
+<script>
+    (function(){
+        let _dom=document.querySelectorAll('li');
+
+        document.querySelector('.but').onclick=function(){
+            let _e=document.querySelector('ol');
+
+            _arr=document.querySelector('input').value.split(',');
+
+            let _f=document.createDocumentFragment();
+            for(let i=0;i<_arr.length;i++){
+                _f.appendChild(_dom[_arr[i]-1]);
+            }
+            _e.innerHTML='';
+            _e.appendChild(_f);
+
+        }
+    })();
+</script>
+</html>
