@@ -19,7 +19,7 @@
             width: 670px;
             perspective: 800px;
             transform-style: preserve-3d;
-            animation: reverseRotate 10s linear infinite;
+            /* animation: reverseRotate 10s linear infinite; */
         }
         .container{
             display: flex;
@@ -27,7 +27,8 @@
             align-items: center;
             height: 100px;
             transform-style: preserve-3d;
-            animation: rotate 10s linear infinite;
+            /* animation: rotate 10s linear infinite; */
+            transform: rotateX(10deg);
             background-color: #000;
         }
         .container > div{
@@ -58,15 +59,15 @@
             will-change: background-color,transform;
         }
         .container [class^=line]::before{
-            transition: background-color .5s,transform .5s;
+            transition: background-color .8s,transform .8s;
         }
         .container [class^=line]::after{
-            transition: background-color .5s,transform .5s .2s;
+            transition: background-color .8s,transform .8s .2s;
         }
         .container .line1,.container .line2,.container .line3{
             left: 2px;
             right: 2px;
-            height: 2px;
+            height: 4px;
         }
         .container .line1::after,.container .line2::after,.container .line3::after,
         .container .line1::before,.container .line2::before,.container .line3::before{
@@ -86,13 +87,13 @@
             bottom: 0;
         }
         .container .line4,.container .line5,.container .line6,.container .line7{
-            width: 2px;
+            width: 4px;
             height: 26px;
         }
         .container .line4::before,.container .line5::before,.container .line6::before,.container .line7::before,
         .container .line4::after,.container .line5::after,.container .line6::after,.container .line7::after{
             height: 49%;
-            width: 2px;
+            width: 100%;
         }
         .container .line4::before,.container .line5::before,.container .line6::before,.container .line7::before{
             top: 0;
@@ -112,7 +113,7 @@
 
         .container > .HLine{
             width: 15px;
-            height: 2px;
+            height: 4px;
             background-color: #181919;
         }
         .container > .HLine::before,.container > .spot::before{

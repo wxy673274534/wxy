@@ -104,7 +104,9 @@
         _e.onclick=function(){
             this.parentElement.style.transform='rotateY(-100deg)';
             _light.removeAttribute('hidden');
-            _light.style.opacity=0;
+            setTimeout(()=>{
+                _light.style.opacity=0;
+            })
         }
     }();
 </script>
