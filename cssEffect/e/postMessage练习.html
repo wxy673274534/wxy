@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>postMessage练习</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <iframe id="myIframe" src="https://wxy673274534.github.io/wxy/cssEffect/e/message事件练习.html"></iframe>
+</body>
+<script>
+    (function(){
+        let _iframe = document.querySelector('#myIframe').contentWindow;
+        _iframe.aaa = 'aaa';
+    })();
+</script>
+</html> 

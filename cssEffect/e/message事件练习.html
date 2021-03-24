@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>message事件练习</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <p class="p"></p>
+</body>
+<script>
+    (function(){
+        console.log('+++',window);
+        let _p = document.querySelector('.p');
+        _p.textContent = window.aaa;
+    })();    
+</script>
+</html> 
