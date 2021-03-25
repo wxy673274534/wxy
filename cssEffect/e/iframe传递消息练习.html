@@ -12,9 +12,11 @@
 </head>
 <body>
     <iframe id="myIframe" src="https://wxy673274534.github.io/wxy/cssEffect/e/message事件练习.html"></iframe>
+    <!-- <iframe id="myIframe" src="https://www.baidu.com/"></iframe> -->
 </body>
 <script>
     (function(){
+        // 需要同源，或者在目标的白名单内，才能用
         let _iframe = document.querySelector('#myIframe').contentWindow;
         _iframe.aaa = 'aaa';
     })();
